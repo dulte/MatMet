@@ -1,0 +1,314 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig 1}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+\maketitle
+
+\section*{Problem 1.2}
+\subsection*{a)}
+
+$$
+\sum_{n=0}^{\infty} n(n+1)(z-2i)^n
+$$
+
+To find the disk of convergence, we can use the ratios test: a series $S_n$ converges if
+
+\begin{equation}
+\rho = \lim_{n\to \infty} \big| {\frac{S_{n+1}}{S_n}} \big| < 1
+\end{equation}
+
+$$
+\rho = \lim_{n\to \infty} \big| \frac{(n+1)(n+2)(z-2i)^{n+1}}{n(n+1)(z-2i)^n} \big|= \lim_{n\to \infty} \big| \frac{n+2}{n} (z-2i) \big|
+$$
+
+$$
+|z-2i| < 1
+$$
+
+This means that the disk of convergence is a disk of radius $1$ and the center at $2i$.
+
+\subsection*{b}
+
+$$
+\sum_{n=0}^{\infty} 2^n(z+i-3)^{2n}
+$$
+
+Again using the ratio test:
+
+$$
+\rho = \lim_{n\to \infty} \big|\frac{2^{n+1}(z+i-3)^{2(n+1)}}{2^n(z+i-3)^{2n}} \big| =\lim_{n\to \infty} |2(z+i-3)^2|
+$$
+
+$$
+|(z+i-3)^2| < \frac{1}{2} \Rightarrow |z-(3-i)| < \frac{1}{\sqrt{2}} 
+$$
+
+The disk of convergence is a disk with radius $1/\sqrt{2}$ and the center at $3-i$
+
+\section*{Problem 1.3}
+\subsection*{a)}
+$\sqrt{2} e^{\frac{5\pi}{4}i}$ can be written on the form $r(\cos(\theta) + i\sin(\theta))$, where:
+
+$$
+r = \sqrt{2}
+$$
+$$
+\cos(\frac{5}{4}) = \sin(\frac{5}{4}) = -\frac{1}{\sqrt{2}}
+$$
+so
+$$
+\sqrt{2} e^{\frac{5\pi}{4}i} = \sqrt{2}(-\frac{1}{\sqrt{2}} - i\frac{1}{\sqrt{2}}) = -1-i
+$$
+
+\subsection*{b}
+To evaluate this, we have to write the expressions in polar form
+$$
+\frac{(1+i)^{48}}{(\sqrt{3} - i)^{25}} = \frac{(\sqrt{2}e^{i \pi/2})^{48}}{(2e^{\frac{11i}{6}\pi})^{25}}
+$$
+
+$$
+= \frac{2^{24}e^{24\pi i}}{2^{25}e^{\frac{25}{6}\pi i}} = \frac{1}{2}e^{\frac{169}{6}\pi i} = \frac{1}{2}e^{\frac{pi}{6}i}
+$$
+
+$$
+= \frac{1}{2}(\cos(\pi / 6) + i\sin(\pi /6)) = \frac{1}{4}(\sqrt{3} + i)
+$$
+
+\subsection*{c)}
+We can find $(8i\sqrt{3} - 8)^{1/4}$ we rewrite the expression in polar form.
+
+$$
+(8i\sqrt{3} - 8) = 8(i\sqrt{3} - 1) = 16e^{\frac{2\pi}{3}i}
+$$
+so
+$$
+(8i\sqrt{3} - 8)^{1/4} = (16e^{\frac{2\pi}{3}i})^{1/4} = \sqrt[4]{16}e^{i\frac{2\pi / 3 + 2\pi k}{4}} ,k = 0,1,2,3
+$$
+
+$$
+= 2e^{\frac{pi}{6} + \frac{pi}{2}k}
+$$
+
+So
+
+$$
+(8i\sqrt{3} - 8)^{1/4} = \{2e^{\frac{pi}{6}i},2e^{\frac{2pi}{3}i},2e^{\frac{7pi}{6}i},2e^{\frac{5pi}{3}i} \}
+$$
+
+\subsection*{d}
+
+From $Example 2, section 10$ in Boas, we know that
+
+$$
+\sqrt[3]{8} = \{2, -1+i\sqrt{3},-1-i\sqrt{3} \}
+$$
+
+We can see that 
+
+$$
+2 + (-1+i\sqrt{3}) + (-1-i\sqrt{3}) = 0
+$$
+
+So the sum of the cube roots of 8 is zero.\\
+
+We can generalize this. The $nth$ of a complex number is given by:
+
+$$
+\sqrt[n]{r}e^{i(\frac{\theta}{n} + \frac{2\pi k}{n})},k = 0,1,...,n-1
+$$
+
+So the sum of the roots are:
+
+$$
+\sum_{k = 0}^{n-1}\sqrt[n]{r}e^{i(\frac{\theta}{n} + \frac{2\pi k}{n})} = 
+\sum_{k = 0}^{n-1}\sqrt[n]{r}e^{i\frac{\theta}{n}}e^{\frac{2\pi k}{n}} = 
+\sqrt[n]{r}e^{i\frac{\theta}{n}} \sum_{k = 0}^{n-1}e^{\frac{2\pi k}{n}}
+$$
+
+To evaluate this sum we must look at $\sum_{k = 0}^{n-1}e^{\frac{2\pi k}{n}}$. This is a geometric series, and we can solve by using:
+
+$$
+S_n = \sum_{k = 1}^{n} r^k =\frac{r(1-r^n)}{1-r}
+$$
+
+We can rotate our expression by $2\pi$ and get:
+
+$$
+\sum_{k = 0}^{n-1}e^{\frac{2\pi k}{n}} = \sum_{k = 1}^{n}e^{\frac{2\pi k}{n}} =
+\sum_{k = 1}^{n}(e^{\frac{2\pi}{n}})^k = \frac{e^{\frac{2\pi}{n}}(1-e^{\frac{2\pi n}{n}})}{1-e^{\frac{2\pi}{n}}}
+$$
+
+We see that $e^{\frac{2\pi n}{n}} = e^{2\pi} = 1$, so $(1-e^{\frac{2\pi n}{n}}) = 0$, since $n>1$ that means that $1-e^{\frac{2\pi}{n}} \neq 0$, and we find that
+
+$$
+\sum_{k = 0}^{n-1}e^{\frac{2\pi k}{n}} = 0
+$$ 
+
+and
+
+$$
+\sum_{k = 0}^{n-1}\sqrt[n]{r}e^{i(\frac{\theta}{n} + \frac{2\pi k}{n})} = 0
+$$
+
+\section*{Problem 1.3}
+\subsection*{a)}
+
+We know that $\sin(z) = \frac{e^{zi} - e^{-zi}}{2i}$
+
+$$
+\int_0^{2\pi} \sin^2(4x) dx = \int_0^{2\pi} \big( \frac{e^{4xi} - e^{-4xi}}{2i} \big) ^2 dx
+$$
+
+$$
+= \int_0^{2\pi} \big( \frac{e^{8xi} -2 + e^{-8xi}}{-4} \big) dx
+$$
+
+$$
+= -\frac{1}{4} \big[ \frac{e^{8ix}}{8i} - 2x - \frac{e^{-8ix}}{8i} \big]_0^{2\pi} = -\frac{1}{4} \big[ \frac{1}{8i} -4\pi - \frac{1}{8i} -\frac{1}{8i} + \frac{1}{8i} \big] 
+$$
+
+$$
+= -\frac{-4\pi}{4} = \pi
+$$
+
+\subsection*{b)}
+
+$$
+\sin ^2 z = \frac{e^{2iz} - e^{-2iz}}{2i} = \frac{(e^{iz})^2 - (e^{-iz})^2}{2i}
+$$
+
+$$
+= \frac{1}{2i} (e^{iz} + e^{-iz})(e^{iz}-e^{-iz}) 
+$$
+
+$$
+2 \frac{e^{iz}-e^{-iz}}{2i} \frac{e^{iz}+e^{-iz}}{2} = 2\cos(z)\sin(z)
+$$
+
+\subsection*{c)}
+$$
+\cosh^2 z - sinh^2 z =  \big( \frac{e^{z} + e^{-z}}{2} \big) ^2 - \big( \frac{e^{z} - e^{-z}}{2} \big) ^2 
+$$
+
+From the fact that $\cosh(z) = \frac{e^{z} + e^{-z}}{2}$ and $\sinh(z) = \frac{e^{z} - e^{-z}}{2}$
+
+$$
+=\frac{1}{4} (e^{2z} + e^{-2z} + 2 - e^{2z} - e^{-2z} + 2) = \frac{4}{4} = 1
+$$
+
+\subsection*{d)}
+$$
+\sin(i \ln\frac{1-i}{1+i}) =  \sin(i \ln z) =  i \sinh (\ln z)
+$$
+
+From $\sin(i z) = i \sinh(z)$
+
+$$
+i \left( \frac{e^{\ln z} - e^{-\ln z}}{2} \right) = i \left(\frac{z-1/z}{2} \right)
+$$
+
+$$
+= \frac{i}{2}\left( \frac{1-i}{1+i} - \frac{1+i}{1-i} \right) = \frac{i}{2}\frac{(1-i)^2 -(1+i)^2}{2} 
+$$
+
+$$
+= \frac{i}{4}(-4i) = 1
+$$
+
+\subsection*{e)}
+
+$$
+(-e)^{i\pi} = (-1)^{i\pi}e^{i\pi}
+$$
+
+We know that $e^{i\pi} = -1$, so
+
+$$
+(e^{i\pi})^{i\pi}e^{i\pi} = e^{-\pi^2}e^{i\pi} = -e^{-\pi^2}
+$$ 
+
+So
+
+$$
+(-e)^{i\pi} = -e^{-\pi^2} + 0i
+$$
+
+\subsection*{f)}
+
+To show that
+
+$$
+\tanh ^{-1} (z) = \frac{1}{2} \ln \frac{1+z}{1-z}
+$$
+
+We are first going to evaluate $\tanh(\frac{1}{2} \ln \frac{1+z}{1-z})$. Lets call $\frac{1+z}{1-z}$ $y$ to make the algebra less tedious. We know that 
+
+$$
+\tanh(z) = \frac{\sinh(z)}{\cosh(z)} = \frac{2}{2}\frac{e^x - e^{-x}}{e^x + e^{-x}}
+$$
+
+So
+
+$$
+\tanh(\frac{1}{2} \ln y) = \frac{e^{\frac{1}{2} \ln y} - e^{-\frac{1}{2} \ln y}}{e^{\frac{1}{2} \ln y} + e^{-\frac{1}{2} \ln y}}
+$$
+
+$$
+= \frac{\sqrt{y} - \frac{1}{\sqrt{y}}}{\sqrt{y} + \frac{1}{\sqrt{y}}} = \frac{y-1}{y+1} = \frac{\frac{1+z}{1-z} - 1}{\frac{1+z}{1-z} + 1} = \frac{1+z-1+z}{1+z+1-z} = \frac{2z}{2} = z
+$$
+
+So if
+
+$$
+\tanh(\frac{1}{2} \ln \frac{1+z}{1-z}) = z
+$$
+
+then
+
+$$
+\tanh^{-1}(z) = \frac{1}{2} \ln \frac{1+z}{1-z}
+$$
+
+\end{document}
+
+
