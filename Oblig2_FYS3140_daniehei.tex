@@ -1,0 +1,345 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+\usepackage{hyperref}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig 2}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+\maketitle
+
+\section*{2.1)}
+\subsection*{a)}
+$$
+\frac{-i + 2z}{2+iz} = \frac{-i + 2a + 2ib}{2 + ia - b} = \frac{2a + i(2b-1)}{(2-b) +ia}
+$$
+
+Vi ganger så telleren med den conjugerte til nevneren
+
+$$
+\frac{(2a + i(2b-1)) ((2-b) -ia)}{(2-b)^2 - a^2} = \frac{2a(2-b) - 2ia^2 + i(2b-a)(2-b) + a(2b-1)}{(2-b)^2 - a^2}
+$$
+
+Som vi sorterer de reelle og imaginære delene får vi:
+
+$$
+u(x,y) = \frac{2a(2-b) + a(2b-a)}{(2-b)^2 - a^2}
+$$
+
+$$
+v(x,y) = \frac{(2b-a)(2-b) - 2a^2}{(2-b)^2 - a^2}
+$$
+
+\subsection*{b)}
+
+$$
+e^{iz} = e^{i(a+ib)} = e^{-b + ia} = e^{-b}e^{ia}
+$$
+
+Vi bruker så Eulers formel:
+
+$$
+e^{-b}e^{ia} = e^{-b}[\cos(a) + i\sin(a)]
+$$
+
+Dette gir oss at
+
+$$
+u(x,y) = e^{-b}\cos(a)
+$$
+
+$$
+v(x,y) = e^{-b}\sin(a)
+$$
+
+\section*{2.2)}
+$$
+\frac{d}{dz}(f(z)g(z) = \lim_{\Delta z \rightarrow 0} \frac{f(z+\Delta z)g(z+\Delta z) - f(z)g(z)}{\Delta z}
+$$
+
+Vi tar så å plusser på $f(z+\Delta z)g(z)-f(z+\Delta z)g(z)$ i telleren:
+
+$$
+\lim_{\Delta z \rightarrow 0} \frac{f(z+\Delta z)g(z+\Delta z) - f(z)g(z) + f(z+\Delta z)g(z)-f(z+\Delta z)g(z)}{\Delta z}
+$$
+
+Vi ser nå at vi kan skrive dette som
+
+$$
+\lim_{\Delta z \rightarrow 0} \left( f(z+\Delta z) \frac{g(z+\Delta z) - g(z)}{\Delta z} + g(z) \frac{f(z+\Delta z) - f(z)}{\Delta z}\right)
+$$
+
+Når vi tar grensen ser vi at
+
+$$
+\lim_{\Delta z \rightarrow 0}  f(z+\Delta z) = f(z)
+$$
+
+Vi ender dermed opp med at
+
+$$
+\frac{d}{dz}(f(z)g(z) = f(z) \frac{dg(z)}{dt} + g(z) \frac{df(z)}{dt}
+$$
+
+\section*{2.3)}
+
+Jeg kommer til å bruke en litt annen notasjon for den deriverte her:
+$$
+\frac{d}{dz} f(z_0) = \lim_{\Delta z \rightarrow 0} \frac{f(z) - f(z_0)}{z-z_0}
+$$
+
+Der $z = z_0 + \Delta z$, og $\Delta z = z -z_0$. Vi kan nå skrive det i polarkoordinater
+
+
+$$
+\frac{d}{dz} f(r_0e^{i\theta_0}) = \lim_{\Delta z \rightarrow 0} \frac{f(re^{i\theta}) - f(r_0e^{i\theta_0})}{z-z_0}
+$$
+
+I første omgang skal vi la $\theta$ være kostant, og tilnærme og punktet via $r$
+
+$$
+\frac{d}{dz} f(r_0e^{i\theta_0}) = \lim_{\Delta r \rightarrow 0} \frac{f(r_0e^{i\theta})-f(re^{i\theta_0})}{re^{i\theta_0}-r_0e^{i\theta_0}}
+$$
+$$
+= e^{-i\theta_0} \lim_{\Delta r \rightarrow 0} \frac{f(r_0e^{i\theta})-f(re^{i\theta_0})}{r-r_0}
+$$
+
+$$
+= e^{-i\theta_0} \lim_{\Delta r \rightarrow 0} \frac{u(r,\theta_0) + iv(r,\theta) - u(r_0,\theta_0) - iv(r_0,\theta_0)}{r-r_0}
+$$
+
+$$
+= e^{-i\theta_0} \left[\frac{\partial u}{\partial r} + i\frac{\partial v}{\partial r}\right]
+$$
+
+Vi skal nå gjøre det samme, men holde $r$ konstant:
+
+$$
+\frac{d}{dz} f(r_0e^{i\theta_0}) = \lim_{\Delta \theta \rightarrow 0} \frac{f(r_0e^{i\theta_0})-f(r_0e^{i\theta})}{r_0e^{i\theta}-r_0e^{i\theta_0}}
+$$
+$$
+= \frac{1}{r_0} \lim_{\Delta \theta \rightarrow 0} \frac{f(r_0e^{i\theta_0})-f(r_0e^{i\theta})}{e^{i\theta}-e^{i\theta_0}}
+$$
+
+Vi skal nå gjøre et lite triks(tatt fra \cite{triks})
+
+$$
+= \frac{1}{r_0} \lim_{\Delta \theta \rightarrow 0} \frac{f(r_0e^{i\theta_0})-f(r_0e^{i\theta})}{\theta - \theta_0}\frac{\theta - \theta_0}{e^{i\theta}-e^{i\theta_0}}
+$$
+
+Vi kan så se på det siste leddet:
+
+$$
+\lim_{\Delta \theta \rightarrow 0} \frac{e^{i\theta}-e^{i\theta_0}}{\theta - \theta_0} = \lim_{\Delta \theta \rightarrow 0} \frac{\cos\theta + i\sin\theta - \cos\theta_0 - i\sin\theta_0}{\theta - \theta_0}
+$$
+
+$$
+= \lim_{\Delta \theta \rightarrow 0}\left(\frac{\cos\theta - \cos\theta_0}{\theta - \theta_0} + i\frac{\sin\theta - \sin\theta_0}{\theta - \theta_0}\right)
+$$
+
+$$
+= -\sin\theta_0  + i\cos\theta_0 = ie^{i\theta_0}
+$$
+
+Vi får da at
+
+$$
+\frac{d}{dz} f(r_0e^{i\theta_0}) = \frac{-ie^{i\theta_0}}{r_0} \lim_{\Delta \theta \rightarrow 0} \frac{f(r_0e^{i\theta_0})-f(r_0e^{i\theta})}{\theta - \theta_0}
+$$
+
+$$
+= \frac{-ie^{i\theta_0}}{r_0} \left[\frac{\partial u}{\partial \theta} + i\frac{\partial v}{\partial \theta}\right] = \frac{e^{i\theta_0}}{r_0} \left[\frac{\partial v}{\partial \theta} - i\frac{\partial u}{\partial \theta}\right]
+$$
+
+Siden den deriverte er unik vet vi at
+
+$$
+\frac{e^{i\theta_0}}{r_0} \left[\frac{\partial v}{\partial \theta} - i\frac{\partial u}{\partial \theta}\right] = e^{-i\theta_0} \left[\frac{\partial u}{\partial r} + i\frac{\partial v}{\partial r}\right]
+$$
+
+Setter vi de reelle dele like, og det samme for de imaginære dele:
+
+$$
+\frac{\partial u}{\partial r} = \frac{1}{r}\frac{\partial v}{\partial \theta}
+$$
+
+$$
+\frac{\partial v}{\partial r} = -\frac{1}{r}\frac{\partial u}{\partial \theta}
+$$
+
+
+\section*{2.4)}
+\subsection*{a)}
+
+$$
+u = \frac{y}{(1-x)^2 + y^2}
+$$
+
+For å sjekke om dette er en harmonisk funksjon må vi sjekke om $\nabla^2 u = 0$. Vi finner først at
+
+$$
+\frac{\partial u}{\partial x} = -\frac{2(x-1)y}{((1-x)^2 + y^2)^2}
+$$
+$$
+\frac{\partial u}{\partial y} = \frac{(1-x)^2-y^2}{((1-x)^2 + y^2)^2} 
+$$
+
+så
+
+$$
+\frac{\partial^2 u}{\partial x^2} = \frac{6(1-x)^2y - 2y^3}{((1-x)^2 + y^2)^3}
+$$
+$$
+\frac{\partial^2 u}{\partial y^2} = -\frac{6(1-x)^2y - 2y^3}{((1-x)^2 + y^2)^3} = -\frac{\partial^2 u}{\partial x^2}
+$$
+
+
+Vi ser da enkelt at
+
+$$
+\nabla^2 u = \frac{\partial^2 u}{\partial x^2} +\frac{\partial^2 u}{\partial y^2} =  0
+$$
+
+og $u$ er harmonisk.
+
+\subsection*{b)}
+
+Vi bruker Cauchy-Riemann for å finne $v$:
+
+$$
+\frac{\partial v}{\partial y} = \frac{\partial u}{\partial x} = -\frac{2(x-1)y}{((1-x)^2 + y^2)^2}
+$$
+
+For å finne et uttrykk for $v$ integrerer vi dette uttrykket med hensyn på y,og får da at:
+
+$$
+v(x,y) = \frac{x-1}{(1-x)^2 + y^2} + \phi (x)
+$$
+
+Vi bruker så at
+
+$$
+\frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y} = \frac{y^2 + (1-x)^2}{((1-x)^2 + y^2)^2} 
+$$
+
+Integrerer vi dette får vi at
+
+$$
+v(x,y) = \frac{x-1}{(1-x)^2 + y^2} + \psi (y)
+$$
+
+Vi kan så slå disse sammen å får at
+
+$$
+v(x,y) = \frac{x-1}{(1-x)^2 + y^2} + C
+$$
+
+Hvor $C$ er en kostant.
+
+Vi kan så skrive om $u+iv$ til en funksjon av $z$. Vi bruker da at $x = \frac{1}{2}(z+\bar{z})$ og $y = \frac{1}{2i}(z-\bar{z})$. Siden begge funksjonene har lik nevner kan vi starte med å finne denne som en funksjon av $z$
+
+$$
+(1-x)^2 + y^2 = 1 - 2x + x^2 + y^2 = 1 - z -\bar{z} + \frac{1}{4}(z+\bar{z}) - \frac{1}{4}(z-\bar{z}) 
+$$
+$$
+1 - z -\bar{z} + \frac{1}{4} z + \frac{1}{4} \bar{z} +\frac{z\bar{z}}{2} - \frac{1}{4} z - \frac{1}{4} \bar{z} +\frac{z\bar{z}}{2} = 1 - z - \bar{z} - z\bar{z}
+$$
+
+Vi finner da at
+
+$$
+u = \frac{y}{(1-x)^2 + y^2} = \frac{1}{2i}\frac{z-\bar{z}}{1 - z - \bar{z} - z\bar{z}}
+$$
+og
+$$
+v = \frac{x-1}{(1-x)^2 + y^2} + C = \frac{1}{2}\frac{z+\bar{z} + 2}{1 - z - \bar{z} - z\bar{z}} + C
+$$
+
+Da blir 
+
+$$
+u + iv = \frac{1}{2i}\frac{z-\bar{z}}{1 - z - \bar{z} - z\bar{z}} - \frac{1}{i}\frac{1}{2}\frac{z+\bar{z} + 2}{1 - z - \bar{z} - z\bar{z}} + C 
+$$
+
+$$
+= \frac{1}{i}\frac{\bar{z}-1}{1 - z - \bar{z} - z\bar{z}} + C = i \frac{1-\bar{z}}{(1-\bar{z})(1-z)} +C = \frac{i}{1-z} + C
+$$
+
+Så vi kan skrive
+
+$$
+f(z) = \frac{i}{1-z} + C
+$$
+
+\subsection*{c)}
+Vi skal nå sjekke at $v$ er harmonisk:
+
+$$
+\frac{\partial v}{\partial x} = \frac{y^2 -(1-x)^2}{((1-x)^2 + y^2)^2}
+$$
+$$
+\frac{\partial v}{\partial y} = \frac{-2(x-1)y}{((1-x)^2 + y^2)^2}
+$$
+
+Og 
+
+$$
+\frac{\partial^2 v}{\partial x^2} = \frac{2(x-1)^3 -6(x-1)y^2}{((1-x)^2 + y^2)^3}
+$$
+$$
+\frac{\partial^2 v}{\partial x^2} = -\frac{2(x-1)^3 -6(x-1)y^2}{((1-x)^2 + y^2)^3} = -\frac{\partial^2 v}{\partial x^2}
+$$
+
+Og vi ser da at
+
+$$
+\nabla^2 v = \frac{\partial^2 v}{\partial x^2} +\frac{\partial^2 v}{\partial y^2} =  0
+$$
+
+og $v$ er harmonisk.
+
+\bibliography{ref} 
+\bibliographystyle{plain}
+
+
+
+\end{document}
+
+
