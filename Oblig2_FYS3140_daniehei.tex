@@ -335,6 +335,71 @@ $$
 
 og $v$ er harmonisk.
 
+\section*{2.5)}
+Om funksjonen ikke har noen singulæriteter innenfor konturen, $C$, vi integrerer over, bruker vi
+
+\begin{equation}
+\oint_C f(z) dz = 0
+\label{noSing}
+\end{equation}
+
+Om det er en singulæritet der, må vi bruke Cauchy's integralteorem
+
+\begin{equation}
+\oint_C \frac{f(z)}{z-z_0} dz= 2\pi\cdot f(z_0)
+\label{Sing}
+\end{equation}
+\subsection*{a)}
+
+Vi kan se at for 
+
+$$
+\oint_C \frac{\sin z}{2z-\pi} dz
+$$
+
+er det en singulæritet ved $z_0 = \pi/2$, som er innenfor konturen(gitt som $|z| = 3$. Vi bruker derfor \ref{Sing}. Så
+
+$$
+\oint_C \frac{\sin z}{2z-\pi} dz = \sin(\frac{\pi}{2})\cdot2\pi i = 2\pi i
+$$
+
+\subsection*{b)}
+Vi har samme integral, men konturen, $C$, er definert ved $|z| = 1$. Da ligger singulæriteten utenfor. Vi bruker da \ref{noSing}, og får at
+
+$$
+\oint_C \frac{\sin z}{2z-\pi} dz = 0
+$$
+
+\subsection*{c)}
+
+For
+
+$$
+\oint_C \frac{\sin 2z}{6z-\pi} dz
+$$
+
+Ser vi at singulæriteten er ved $z_0 = \pi/6$. Dette er innenfor konturen $C$ gitt ved $|z| = 1$. Vi må da bruke \ref{Sing}, så
+
+$$
+\oint_C \frac{\sin 2z}{6z-\pi} dz = \sin(2\frac{\pi}{6})\cdot2\pi i = \sqrt{3}\pi i
+$$
+
+\subsection*{d)}
+
+For 
+
+$$
+\oint_C \frac{e^{2z}}{z-\ln 2} dz
+$$
+
+er $z = \ln 2 \approx 0.693$ er en singulæritet. $C$ er et kvadrat med hjørnene i $\pm 2$ og $\pm 2i$. Vi siden $\ln 2 < 2$ så er det en singulæritet på innsiden av $C$. Vi bruker da \ref{Sing}. Så
+
+$$
+\oint_C \frac{e^{2z}}{z-\ln 2} dz = 2\pi i e^{2\ln2} =2\pi i (e^{\ln2})^2 = 2\pi i 2^2 = 8\pi i
+$$
+
+
+
 \bibliography{ref} 
 \bibliographystyle{plain}
 
