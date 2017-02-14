@@ -1,0 +1,214 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig 4}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+\maketitle
+
+\section*{1)}
+\subsection*{a)}
+$$
+\frac{\sin z}{3z},\qquad z = 0
+$$
+
+We are going to start by writing a Taylor expansion of $\sin z$
+
+\begin{equation}
+\sin z = z - \frac{z^3}{3!} + \cdots
+\label{eq:sin}
+\end{equation}
+
+Which gives
+
+$$
+\frac{\sin z}{3z} = \frac{1}{z}\left(z - \frac{z^3}{3!} + \cdots \right) = 1-\frac{z^2}{3!} + \cdots
+$$
+
+Since we don't have any $b_n$-term --and therefor no singularity in the series--, $z = 0$ is a removable singularity.
+
+\subsection*{b)}
+$$
+\frac{\cos z}{z^4}, \qquad z=0
+$$
+
+We can now take Taylor of $\cos z$
+
+$$
+\cos z = 1 - \frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots
+$$
+
+Which gives
+
+$$
+\frac{\cos z}{z^4} = \frac{1}{z^4}\left(1 - \frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots\right) = \frac{1}{z^4}-\frac{1}{2z^2}+\frac{1}{4!}-\frac{z^2}{6!} + \cdots
+$$
+
+
+The highest negative power in this series is $2$, this means that this function has a pole of order $2$.
+
+\subsection*{c)}
+$$
+\frac{z^3-1}{(z-1)^3},\qquad z = 1
+$$
+
+We can use partial fraction decomposition to get that
+
+$$
+\frac{z^3-1}{(z-1)^3} = \frac{3}{z-1} + \frac{3}{(z-1)^2} + 1
+$$
+
+This is the Laurent series. Since the highest negative power is $2$, this has a pole of order 2
+
+\subsection*{d)}
+$$
+\frac{e^z}{z-1},\qquad z = 1
+$$
+
+We can do a Taylor expansion of $e^z$ around $z=1$
+
+$$
+\frac{e^z}{z-1} = e +e(z-1) + \frac{e(z-1)^2}{2!}+\cdots
+$$
+
+Which gives
+
+$$
+\frac{e^z}{z-1} = \frac{1}{z-1}\left(e +e(z-1) + \frac{e(z-1)^2}{2!}+\cdots\right) = \frac{e}{z-1} + e + \frac{(z-1)e}{2!} + \cdots
+$$
+The greatest negative power here is 1, so this has a pole of order 1(simple point).
+
+\subsection*{e)}
+$$
+\frac{e^z - 1- z}{z^3},\qquad z = 0
+$$
+
+We can use partial fraction decomposition to find
+
+$$
+\frac{e^z - 1- z}{z^3} = \frac{e^z}{z^3} - \frac{1}{z^3} - \frac{1}{z^2}
+$$
+
+We can use Taylor on $e^z$ which gives us
+
+$$
+\frac{e^z - 1- z}{z^3} = - \frac{1}{z^3} - \frac{1}{z^2} + \frac{1}{z^3}\left(1+z+\frac{z^2}{2!}+\frac{z^3}{3!}+\frac{z^4}{4!} + \cdots\right)
+$$
+
+$$
+= - \frac{1}{z^3} - \frac{1}{z^2} + \frac{1}{z^3} + \frac{1}{z^2} + \frac{1}{2z} + \frac{1}{3!} + \frac{z}{4!} + \cdots
+$$
+
+$$
+=\frac{1}{2z} + \frac{1}{3!} + \frac{z}{4!} + \cdots
+$$
+
+Which shows us that the function has a pole of order 1 (simple point).
+\newpage
+\section*{2)}
+\subsection*{14.6.1)}
+
+$$
+\frac{1}{z(z+1)}, \qquad z = 0
+$$
+
+$z = 0$ for $\frac{1}{z+1}$ is not a singularity, so we are going to look at the Taylor expression for this expression
+
+$$
+\frac{1}{z+1} = 1-z+z^2-z^3 + \cdots
+$$
+
+So
+
+$$
+\frac{1}{z(z+1)} = \frac{1}{z}\left(1-z+z^2-z^3 + \cdots\right) = \frac{1}{z} - 1 +z -z^2 +\cdots
+$$
+The residue is the coefficient of the term $z^{-1}$. So the residue here is $\underline{\underline{1}}$
+
+
+
+\subsection*{14.6.3)}
+$$
+\frac{\sin z}{z^4}, \qquad z = 0
+$$
+
+We have the Taylor expansion of $\sin z$ from \ref{eq:sin}. Thus
+
+$$
+\frac{\sin z}{z^4} = \frac{1}{z^4}\left(z - \frac{z^3}{3!} + \frac{z^5}{5!} + \cdots\right) = \frac{1}{z^3} - \frac{1}{6z} + \frac{z}{5!} + \cdots
+$$
+
+The residue is the coefficient of the term $z^{-1}$. So the residue here is $\underline{\underline{-\frac{1}{6}}}$
+
+\subsection*{14.6.9)}
+$$
+\frac{1}{z^2 - 5z +6}, \qquad	 z=2
+$$
+
+We are going to start by doing a partial fraction decomposition
+
+$$
+\frac{1}{z^2 - 5z +6} = -\frac{1}{z-2} + \frac{1}{z-3}
+$$
+
+The first term is as it should in the Laurent series. We then have to expand $\frac{1}{z-3}$ around $z = 2$. We are going to use that
+
+$$
+\frac{1}{1-z} = \sum_{n = 0}^{\infty}z^n
+$$
+
+so
+
+$$
+\frac{1}{z-3} = -\frac{1}{1-(z-2)} = -\sum_{n = 0}^{\infty}(z-2)^n
+$$
+
+So the full function
+
+$$
+\frac{1}{z^2 - 5z +6} = -\frac{1}{z-2} -\sum_{n = 0}^{\infty}(z-2)^n
+$$
+
+The residue is the coefficient of the term $(z-2)^{-1}$, so the residue is $\underline{\underline{-1}}$
+
+\end{document}
+
+
