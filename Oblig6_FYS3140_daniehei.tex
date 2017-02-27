@@ -1,0 +1,423 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig 6}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+\maketitle
+\section*{5.1)}
+\subsection*{a)}
+We have the integral
+
+$$
+I = \int_{-\infty}^{\infty}\frac{x\sin x}{x^2 + 4x +5} dx
+$$
+
+Since we have that $\frac{P(x)}{Q(x)} \in \mathbb{R}$ we can use the easy way of evaluating this integral, with $\sin x = \mathrm{Re}(e^{iz})$. We will be integrating in a half circle in the upper complex plane, and since $\mathrm{deg}P(x) \leq \mathrm{deg} Q(x) + 1$ and we have no negative coefficient in the sinus function, Jordan's lemma hold.
+
+$$
+\rightarrow \tilde{I} = \int_{-\rho}^{\rho} \frac{z e^{iz}}{z^2 + 4z +5} dz
+$$
+
+The roots of the polynomial is $-2 \pm i$, but the only singularity inside our integration path is $-2+i$, so we get that
+
+$$
+\tilde{I} = \int_{-\rho}^{\rho} \frac{z e^{iz}}{(z-(-2-i))(z-(-2+i))} dz = 2\pi i \mathrm{Res}(-2+i)
+$$
+
+And:
+
+$$
+\mathrm{Res}(-2+i) = \lim_{z \rightarrow -2+i} (z-(-2+i)) \frac{z e^{iz}}{(z-(-2-i))(z-(-2+i))} = \frac{(-2+i)e^{-2i-1}}{2i}
+$$
+
+So we when get that
+
+$$
+\tilde{I} = 2\pi i(\frac{(-2+i)e^{-2i-1}}{2i}) 
+$$
+
+And using Euler's formula
+
+$$
+= \frac{\pi}{2}(-2\cos(2) +2i\sin(2) + i\cos(2) + \sin(2))
+$$
+
+Since our integral has a sinus, we get that
+
+$$
+I = \mathrm{Im}(\tilde{I}) =\underline{\underline{ \frac{\pi}{e}(2\sin(2) + \cos(2))}}
+$$
+
+\subsection*{b)}
+
+We have
+
+$$
+I = \int_0^{\infty} \frac{\cos 2x}{(4x^2 + 9)^2} dx = \frac{1}{2}\int_{-\infty}^{\infty} \frac{\cos 2x}{(4x^2 + 9)^2} dx 
+$$
+
+For the same reasons as above, Jordan's lemma holds, and the integral is over a half circle in the upper plane. 
+
+$$
+\rightarrow \tilde{I} = \frac{1}{2}\int_{-\rho}^{\rho}\frac{e^{2iz}}{(4z^2 +9)^2}dz
+$$
+
+The roots of $4z^2 + 9$ is $\pm \frac{3i}{2}$, but only $+\frac{3i}{2}$ is inside our integration path
+
+$$
+\tilde{I} = \frac{1}{2}\int_{-\rho}^{\rho}\frac{e^{2iz}}{16(z - (-\frac{3i}{2})^2(z-\frac{3i}{2})^2} dz = 2\pi i \mathrm{Res}(\frac{3i}{2})
+$$
+
+and
+$$
+\mathrm{Res}\left(\frac{3i}{2}\right) = \lim_{z\rightarrow \frac{3i}{2}} (z - \frac{3i}{2})^2 \frac{e^{2iz}}{16(z - (-\frac{3i}{2})^2(z-\frac{3i}{2})^2}
+$$
+
+$$
+\lim_{z\rightarrow \frac{3i}{2}} \frac{ie^{2iz}(2z+5i)}{2(2z+3i)^3} = -\frac{i}{54e^3}
+$$
+
+So 
+
+$$
+\tilde{I} = \pi i(-\frac{i}{54e^3}) = \frac{\pi}{54e^3}
+$$
+
+Since we have a cosinus function:
+
+$$
+I = \mathrm{Re}(\tilde{I}) = \underline{\underline{\frac{\pi}{54e^3}}}
+$$
+
+\subsection*{c)}
+
+We have that
+
+$$
+I = \int_{-\infty}^{\infty} \frac{x \sin \pi x}{1-x^2} dx
+$$
+
+We are going to make this complex
+
+$$
+\rightarrow \tilde{I} = \int_{-\rho}^{\rho} \frac{ze^{\pi iz}}{1-z^2} dz = \int_{-\rho}^{\rho} \frac{ze^{\pi iz}}{-(z-1)(z-(-1))} dz
+$$
+
+The last step because the roots of $1-z^2$ is $\pm 1$. The problem is that $\pm 1 $ is on the path of the integration. This means that we have to find the principle value.
+
+$$
+\tilde{I} \rightarrow \mathrm{PV}\tilde{I} = \pi i(\mathrm{Res}(1) + \mathrm{Res}(-1))
+$$
+
+We can now find
+
+$$
+\mathrm{Res}(1) = \lim_{z\rightarrow 1} (z-1)  \frac{-ze^{\pi iz}}{(z-1)(z-(-1))} = -\frac{e^{\pi i}}{2}
+$$
+and
+
+$$
+\mathrm{Res}(-1) = \lim_{z\rightarrow -1} (z-(-1))  \frac{-ze^{\pi iz}}{(z-1)(z-(-1))} = -\frac{e^{-\pi i}}{2}
+$$
+
+We can now use that $\frac{1}{2}(e^{i\pi} + e^{-i \pi}) = \cos(\pi)$ to find that
+
+
+
+$$
+\mathrm{PV}(\tilde{I}) = \pi i (-\frac{e^{\pi i}}{2} -\frac{e^{-\pi i}}{2}) = -\pi i \cos(\pi) = \pi i
+$$
+
+Since the original integral had a sinus function, we then get that:
+
+$$
+\mathrm{PV}({I}) = \mathrm{Re}(\mathrm{PV}(\tilde{I})) = \underline{\underline{\pi}}
+$$
+
+\subsection*{d)}
+We have 
+
+$$
+I = \int_{0}^{\infty} \frac{1}{1-x^4}dx = \frac{1}{2}\int_{-\infty}^{\infty} \frac{1}{1-x^4}dx
+$$
+
+We are then going to make this into an integral over a half circle in the upper complex plane:
+
+$$
+\rightarrow \tilde{I} = \frac{1}{2}\int_{-\rho}^{\rho} \frac{1}{1-z^4} dz
+$$
+
+The polynomial $1-z^4$ has 4 roots $\pm 1$ and $\pm i$. We see that  $\pm 1$ is on the path of integration, while only $+i$ is inside the contour. So
+
+$$
+\tilde{I} = -\frac{1}{2}\int_{-\rho}^{\rho} \frac{-1}{(z-1)(z-(-1))(z-i)(z-(-i))} dz = -\frac{1}{2}(2\pi i \mathrm{Res}(i) + \pi i(\mathrm{Res}(1) +\mathrm{Res}(-1))) 
+$$
+
+We find that
+
+$$
+\mathrm{Res}(i) = \lim_{z\rightarrow i}(z-i)\frac{1}{(z-1)(z-(-1))(z-i)(z-(-i))} = \frac{i}{4}
+$$
+
+$$
+\mathrm{Res}(1) = \lim_{z\rightarrow 1}(z-1)\frac{1}{(z-1)(z-(-1))(z-i)(z-(-i))} = \frac{1}{4}
+$$
+$$
+\mathrm{Res}(-1) = \lim_{z\rightarrow -1}(z-(-1))\frac{1}{(z-1)(z-(-1))(z-i)(z-(-i))} = -\frac{1}{4}
+$$
+
+We then get that
+$$
+I = \tilde{I} = -\frac{1}{2}(2\pi i\frac{i}{4} + \pi i(\frac{1}{4} -\frac{1}{4})) = \underline{\underline{\frac{\pi}{4}}}
+$$
+
+\subsection*{e)}
+We have that
+
+$$
+I = \int_{-\infty}^{\infty} \frac{\cos x}{x+i} dx
+$$
+
+Here we do not have that $\frac{P(x)}{Q(x)} \in \mathbb{R}$, but it is complex. This means that we no longer can use the simple method. Instead we have to use that $\cos x = \frac{1}{2}(e^{iz} + e^{-iz})$. The roots of $z + i$ are $-i$
+
+$$
+\rightarrow \tilde{I} = \frac{1}{2}\int_{-\rho}^{\rho} \underbrace{\frac{e^{iz}}{z-(-i)}}_{\tilde{I}_1} + \underbrace{\frac{e^{-iz}}{z-(-i)}}_{\tilde{I}_2} dz
+$$
+
+First we look at $\tilde{I}_1$. Here we are integrating around a contour in the upper plane. Thus $-i$ is not a singularity inside this contour, meaning that $\tilde{I}_1 = 0$.\\
+
+For $\tilde{I}_2$ we are integrating in the lower part, meaning that the singularity is inside the contour. But this contour is going clockwise, and we want to integrate counterclockwise. This means that we are going to reverse the direction of the contour, and thereby get a minus sign in front of the integral. So
+
+$$
+\tilde{I}_2 = -\frac{1}{2}(2\pi i \mathrm{Res}(-i))
+$$
+
+And
+
+$$
+\mathrm{Res}(-i) = \lim_{z \rightarrow -i} (z-(-i))\frac{e^{-iz}}{z-(-i)} = \frac{1}{e}
+$$
+
+$$
+\Rightarrow \tilde{I}_2 = -\frac{1}{2}(2\pi i \frac{1}{e}) -\frac{\pi i}{e}
+$$
+
+This gives us the integral
+
+$$
+I = \tilde{I} = \tilde{I}_1 + \tilde{I}_2 = 0 -\frac{\pi i}{e} = \underline{\underline{-\frac{\pi i}{e}}}
+$$
+
+\section*{5.2)}
+\subsection*{a)}
+We a mass with density 1 in the shape of a part of a sphere where $x > 0$, $y > 0$(a half sphere). From
+
+$$
+\vec{L} = m[r^2\vec{\omega} -(x\omega_x + y\omega_y + z\omega_z)\vec{r}]
+$$
+
+On component form we get that
+
+$$
+L_n = m[r^2\omega_n-(r_x\omega_x + r_y\omega_y + r_z\omega_z)r_n]
+$$
+
+This means that we can find the inertia tensor on component form
+
+$$
+I_{nn} = m(r^2-r_n^2) 
+$$
+$$
+I_{nm} = -mr_mr_n 
+$$
+
+On matrix form
+
+$$
+I =
+\begin{pmatrix}
+m(r^2-r_x^2) & -mr_xr_y  & -mr_xr_z \\
+-mr_yr_x  & m(r^2-r_y^2) & -mr_yr_z \\
+-mr_zr_x  & -mr_zr_y  & m(r^2-r_z^2)  
+\end{pmatrix}
+$$
+
+We also see that $I_{nm} = I_{mn}$. This is only for a point mass, so we have to integrate over the whole volume. Since we have a half sphere we need to integrate $r$ between $0$ and $1$, $\theta$ between $0$ and $\pi$, and $\phi$ between $0$ and $\pi/2$. We are going to integrate with spherical coordinates:
+
+$$
+I_{xx} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\sin^2\theta \cos^2\phi)r^2 \sin\theta d\phi d\theta dr = \frac{2\pi}{15}
+$$
+$$
+I_{yy} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\sin^2\theta \sin^2\phi)r^2 \sin\theta d\phi d\theta dr = \frac{2\pi}{15}
+$$
+$$
+I_{zz} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\cos^2\theta)r^2 \sin\theta d\phi d\theta dr = \frac{2\pi}{15}
+$$
+$$
+I_{xy} = I_{yx} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\sin^2\theta \cos\phi\sin\phi)r^2 \sin\theta d\phi d\theta dr = -\frac{2}{15}
+$$
+$$
+I_{xz} = I_{zx} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\sin^2\theta \cos\phi\cos\theta)r^2 \sin\theta d\phi d\theta dr = 0
+$$
+$$
+I_{yz} = I_{zy} = \int_{r = 0}^{1} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{\pi/2} (r^2 - r^2\sin^2\theta \sin\phi\cos\theta)r^2 \sin\theta d\phi d\theta dr = 0
+$$
+
+We can finally write down the inertial tensor
+
+$$
+I = \frac{1}{15}
+\begin{pmatrix}
+2\pi & -2 & 0\\
+-2 & 2\pi & 0\\
+0&0& 2\pi
+\end{pmatrix}
+$$
+
+The principle moments of inertia are defined as the eigenvalues of $I$, which are
+
+$$
+\frac{1}{5}
+\begin{pmatrix}
+2(\pi + 1) \\
+2\pi \\
+2(\pi -1)
+\end{pmatrix}
+$$
+
+And the principle axes of inertia are the eigenvectors:
+
+$$
+\begin{pmatrix}
+-1\\
+1\\
+0
+\end{pmatrix}
+,\qquad
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+,\qquad
+\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}
+$$
+
+\subsection*{b)}
+We have two point masses: $m_1 = 1$ kg at $(1,1,-2)$ and $m_2 = 2$ kg at $(1,1,1)$. We are going to use that
+$$
+I_{nn} = \sum_i m(r_i^2-r_{i,n}^2) 
+$$
+$$
+I_{nm} = \sum_i -m_ir_{i,m}r_{i,n} 
+$$
+
+So 
+
+$$
+I_{xx} = (1^2 +(-2)^2) - 2(1^2 + 1^2) = 9
+$$
+$$
+I_{yy} = (1^2 +(-2)^2) - 2(1^2 + 1^2) = 9
+$$
+$$
+I_{zz} = (1^2 +1^2) - 2(1^2 + 1^2) = 6 
+$$
+$$
+I_{xy} = I_{yx} = -(1\cdot1) - 2(1\cdot 1) = -3
+$$
+$$
+I_{xz} = I_{zx} = -(1\cdot-2) - 2(1\cdot 1) = 0
+$$
+$$
+I_{yz} = I_{zy} = -(1\cdot-2) - 2(1\cdot 1) = 0
+$$
+
+Giving us that
+
+$$
+I = 
+\begin{pmatrix}
+9 & -3 & 0\\
+-3 & 9 & 0\\
+0&0& 6
+\end{pmatrix}
+$$
+
+This gives us the principle momentum of inertia
+
+$$
+\begin{pmatrix}
+12\\6\\6
+\end{pmatrix}
+$$
+
+And the principle axes of inertia:
+
+$$
+\begin{pmatrix}
+-1\\
+1\\
+0
+\end{pmatrix}
+,\qquad
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+,\qquad
+\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}
+$$
+
+
+\end{document}
+
+
