@@ -175,6 +175,76 @@ This gives us the final solution:
 
 \section*{2)}
 
+\subsection*{a)}
+
+We are going to evaluate 
+
+$$
+\bigg| \int_{\gamma} \frac{e^{3z}}{1+e^z} dz \bigg| 
+$$
+
+Where $\gamma$ is the straight line from $z = R$ to $z = R + 2\pi i$, where $R > 0$.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{2a.png}
+\caption{The contour $\gamma$(suppose to be a straight line).}
+\end{figure}
+
+We know from upper bound estimates of contour integrals that:
+
+$$
+\bigg| \int_{\gamma} f(z) dz \bigg| \leq M l 
+$$
+
+Where $M = \max_{gamma} |f(z)|$ and $l$ is the length of $\gamma$. First we are going to evaluate
+
+$$
+M = \max_{\gamma}\bigg|\frac{e^{3z}}{1+e^z}\bigg|
+$$
+
+First we look at the numerator. We want the numerator to become as large as possible. To do this we are going to parameterize the curve $\gamma = R + \theta i$, where $0\leq \theta \leq 2\pi$:
+
+$$
+\max_ {\gamma} |e^{3z}| = \max_ {\gamma} |e^{3(R + \theta i)}| = \max_ {\gamma} |e^{3R}e^{3\theta i}|=\max_ {\gamma} |e^{3R}||e^{3\theta i}|
+$$
+
+The term $e^{3\theta i}$ is just a rotation, meaning that $|e^{3\theta i}| = 1$. So:
+
+\begin{equation}
+\max_ {\gamma} |e^{3z}| = \max_ {\gamma} |e^{3R}| = e^{3R}
+\label{eq:maxNum}
+\end{equation}
+
+We now look at the denominator. To get the whole expression to be as big as possible, we want the denominator to be as small as possible:
+
+$$
+\min_{\gamma} |1+ e^z| = \min_{\gamma}|e^z - (-1)| \geq \min_{\gamma}(|e^z| - 1) = e^R -1
+$$
+
+I used $|e^z| - 1$ instead of $1-|e^R|$ to make sure that the denominator is positive, since $R<0 \Leftrightarrow e^R > 1$. So we get that:
+
+\begin{equation}
+M = \frac{e^R}{e^R - 1}
+\label{eq:M}
+\end{equation}
+
+We can now look at the length $l$:
+
+\begin{equation}
+l = |(R + 2\pi i) - R | = |2\pi| = 2\pi
+\label{eq:l}
+\end{equation}
+
+Combining \ref{eq:M} and \ref{eq:l}, we finally find that:
+
+$$
+\bigg| \int_{\gamma} \frac{e^{3z}}{1+e^z} dz \bigg| \leq M l = \frac{2\pi e^{3R}}{e^R-1}
+$$
+
+
+
+
 \subsection*{b)}
 \begin{figure}[H]
 \centering
@@ -188,7 +258,48 @@ $$
 \tilde{I} = \int_{\Gamma_{\rho}} e^{iz^2}dz
 $$
 
-We see that for every $\rho$ $e^{iz^2}$ is analytic; $e^{iz^2}$ is well-defined and has no singularities for the entire $\mathbb{C}$. The Cauchy Theorem says that if a function $f(z)$ is analytic inside and on a contour $\Gamma$ when
+We want to check where $e^{iz^2}$ is analytic. We can do this by checking if $e^{iz^2}$ satisfy the Cauchy-Riemann conditions. We are going to use that $z = x+iy$:
+
+$$
+e^{iz^2} = e^{i(x + iy)^2} = e^{i(x^2 + 2xy -y^2)} = e^{-2xy}e^{x^2-y^2}
+$$
+
+We then use Euler's formula:
+
+$$
+= e^{-2xy}(\cos(x^2-y^2) + i\sin(x^2-y^2))
+$$
+
+We want this on the form $f(z) = u(x,y) + v(x,y)i$, so
+
+$$
+u(x,y) = e^{-2xy}\cos(x^2-y^2), \qquad v(x.y) = e^{-2xy}\sin(x^2-y^2)
+$$
+
+To check the Cauchy-Riemann conditions we need the derivatives of these functions:
+
+$$
+\frac{\partial u}{\partial x} = -2e^{-2xy}(x\sin(x^2-y^2) + y\cos(x^2 - y^2))
+$$
+$$
+\frac{\partial u}{\partial y} = 2e^{-2xy}(y\sin(x^2-y^2) - x\cos(x^2 - y^2))
+$$
+$$
+\frac{\partial v}{\partial x} = 2e^{-2xy}(x\cos(x^2-y^2) - y\sin(x^2 - y^2))
+$$
+$$
+\frac{\partial u}{\partial y} = -2e^{-2xy}(x\sin(x^2-y^2) + y\cos(x^2 - y^2))
+$$
+
+We see from these that:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+$$
+
+And so we see that $e^{iz^2}$ satisfy the Cauchy-Riemann conditions. Since we haven't chosen any specific $x,y$, we get that this is true independent of our choice of $x$ and $y$, meaning that for every $\rho$, $e^{iz^2}$ is analytic.\\
+
+ The Cauchy Theorem says that if a function $f(z)$ is analytic inside and on a contour $\Gamma$ when
 
 $$
 \int_{\Gamma} f(z) dz = 0
@@ -205,7 +316,7 @@ $$
 The integral
 
 $$
-\tilde{I}_1 = \int_{\gamma_1} e^{iz^2} dz = int_0^{\rho} e^{iz^2} dz
+\tilde{I}_1 = \int_{\gamma_1} e^{iz^2} dz = \int_0^{\rho} e^{iz^2} dz
 $$
 
 is a integral over a line on the real axis, so to make this an integral of a real value we are going to do the trivial transformation:
@@ -275,13 +386,130 @@ $$
 This gives us the final result:
 
 \begin{equation}
-\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-x^2}dx
+\underline{\underline{\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-x^2}dx}}
 \label{eq:I3}
 \end{equation}
 
 
 
 \subsection*{e)}
+We have the integral
+
+$$
+\int_{\gamma_2}e^{iz^2} dz
+$$
+
+Where $\gamma = \rho e^{i\theta}$, with $0 \leq \theta \leq \pi/4$. From the $lemma$ in the exercise we know that
+
+$$
+|\int_0^{\rho} f(z) dz| \leq \int_0^{\rho} M(z) dz
+$$
+
+Where $M(z)$ is real, and $|f(z)| \leq M(z)$. We can start with by doing a transformation of our integral with $z = \rho e^{i\theta}$. We also need that
+
+$$
+\frac{dz}{d\theta} = i\rho e^{i\theta} \Rightarrow dz = i\rho e^{i\theta} d\theta
+$$
+
+Giving us that:
+
+$$
+\big| \int_{\gamma_2}e^{iz^2} dz \big| = \big|\int_0^{\pi/4} e^{i\rho^2 e^{2i\theta}} i\rho e^{i\theta} d\theta \big|
+$$
+
+Using Euler's formula:
+
+$$
+= \big|\int_0^{\pi/4} e^{i\rho^2 \cos(2\theta)}e^{-\rho^2 \sin(2\theta)} i\rho e^{i\theta} d\theta \big|
+$$
+
+We can try to eliminate some terms by using the generalized triangular inequality:
+
+$$
+\big|\int_0^{\pi/4} e^{i\rho^2 \cos(2\theta)}e^{-\rho^2 \sin(2\theta)} i\rho e^{i\theta} d\theta \big| \leq \int_0^{\pi/4} |e^{i\rho^2 \cos(2\theta)}||e^{-\rho^2 \sin(2\theta)}|\underbrace{|i|}_{=1}\underbrace{|e^{i\theta}|}_{=1}\rho d\theta
+$$
+
+We see that $e^{i\rho^2 \cos(2\theta)}$ is a rotation, meaning that $|e^{i\rho^2 \cos(2\theta)}| = 1$. So we get
+
+$$
+= \int_0^{\pi/4} |e^{-\rho^2 \sin(2\theta)}|\rho d\theta
+$$
+
+We now make an other change of variables:
+
+$$
+2\theta = \alpha, \qquad d\alpha = \frac{1}{2} d\theta, \qquad 0 \leq \alpha \leq \pi/2
+$$
+
+And since $e^{-\rho^2 \sin(2\theta)}$ is a real quantity we get $|e^{-\rho^2 \sin(2\theta)}| = e^{-\rho^2 \sin(2\theta)}$. Combining these we get 
+
+$$
+\int_0^{\pi/4} |e^{-\rho^2 \sin(2\theta)}|\rho d\theta = \frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha
+$$
+
+And we can now look closer at $\sin \alpha$. As hinted in the exercise, the line connection the two end points are less than $\sin \alpha$. We need to find that line. A straight line is given as:
+
+$$
+y(\alpha) - y_0 = a(\alpha - \alpha_0)
+$$
+
+First, for $\alpha = 0$ we have $\sin \alpha = 0$, so $x_0 = y_0 = 0$.
+
+$$
+y = a\alpha
+$$
+
+To find $\alpha$ we look at the end point. We that for $\alpha = \pi/2 \Rightarrow \sin\alpha = 1$, and find 
+
+$$
+1 = a\frac{\pi}{2} \Rightarrow a = \frac{2}{\pi}
+$$ 
+
+So the straight line connection the end points are given as
+
+$$
+y(\alpha) = \frac{2}{\pi}\alpha
+$$
+
+And from the hint we get that:
+
+\begin{equation}
+\sin \alpha \geq \frac{2\alpha}{\pi}
+\label{eq:sinStraight}
+\end{equation}
+
+From above we had that 
+
+$$
+\big| \int_{\gamma_2}e^{iz^2} dz \big| \leq \frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha
+$$
+
+We can use \ref{eq:sinStraight} and see that this implies 
+
+$$
+\frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha \leq \frac{1}{2}\int_0^{\pi/2} e^{-2\rho^2 \alpha/\pi}\rho d\alpha
+$$
+
+The last expression is an integral we can solve. This gives us:
+
+$$
+\frac{1}{2}\int_0^{\pi/2} e^{-2\rho^2 \alpha/\pi}\rho d\alpha = \frac{\pi}{4\rho} - \frac{\pi e^{-\alpha^2}}{4\rho}
+$$
+
+We see that $\frac{\pi e^{-\alpha^2}}{4\rho}$ is a positive, real number, meaning 
+
+$$
+\frac{\pi}{4\rho} - \frac{\pi e^{-\alpha^2}}{4\rho} \leq  \frac{\pi}{4\rho}
+$$
+
+And we get the final result:
+
+\begin{equation}
+\underline{\underline{\big| \int_{\gamma_2}e^{iz^2} dz \big| \leq \frac{\pi}{4\rho}}}
+\label{eq:I2}
+\end{equation}
+
+
 
 \subsection*{f)}
 
@@ -312,7 +540,7 @@ We saw from \ref{eq:I1} that
 
 $\underline{\mathbf{\tilde{I}_2}}$:\\
 
-We found that
+We found that \ref{eq:I2}
 
 $$
 \bigg|\int_{\gamma_2}e^{iz^2}dz \bigg| \leq \frac{\pi}{4\rho}
@@ -381,17 +609,28 @@ $$
 I = \int_0^{\infty}e^{ix^2}dx =\underline{\underline{\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}}}
 $$\\
 
-We can now use this to evaluate some integrals:
+We can now use this to evaluate some integrals. We are going to start by noting that:
 
 $$
-\int_0^{\infty} \cos(x^2) dx = \int_0^{\infty} \frac{1}{2}(e^{ix^2} + e^{-ix^2}) dx  = \int_0^{\infty} \frac{1}{2}(e^{ix^2} + e^{i(ix)^2}) dx
-$$
-$$
-= \frac{1}{2}\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}  + \right)
+\int_0^{\infty}e^{ix^2}dx = \int_0^{\infty} \cos(x^2) + i\sin(x^2)dx
 $$
 
+This means that $I$ has a real and an imaginary part. We can quickly see from this that:
+
+$$
+\int_0^{\infty} \cos(x^2)dx = Re(\int_0^{\infty}e^{ix^2}dx) = Re\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
+$$
+
+And
+
+$$
+\int_0^{\infty} \sin(x^2)dx = Im(\int_0^{\infty}e^{ix^2}dx) = Im\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
+$$
+
+We get that the two integrals are equivalent. 
 
 
+\newpage
 \section*{3)}
 \subsection*{a)}
 
@@ -450,7 +689,7 @@ Where $C$ is some constant.\\
 
 This is now the case for $P_2$, which is explicitly dependent on $\theta$, $\theta'$ and $r$. So $P_1$ is the best choice.
 
-
+\newpage
 \subsection*{b)}
 
 We are now going to start to minimize the path of $P_1$ \ref{eq:p1}. As mentioned above this means we have to solve the Euler-Lagrange equation, which we showed reduces \ref{eq:lagrange} to
@@ -566,13 +805,13 @@ We are interested in finding how much the light is refracted when it moves from 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{3c.png}
-\caption{A crude drawing of the light moving from far away to d, then away from $\mathcal{0}$. We can see that the light deflects the same amount on both the way in and the way out.}
+\caption{A crude drawing of the light moving from far away to d, then away from $\mathcal{0}$. We can see that the light deflects the same amount on both the way in and the way out. This figure and the method used below is heavily inspired by the AST1100 lecture notes on gravitational lensing.}
 \end{figure}
 
 Since the refractive index is only dependent on the distance from $\mathcal{O}$ the deflection angle will be the same as the light moves in, as when it moves out. This means that we only have to find the angle form $r = d$ to $r = \infty$(I am going to set "far away" as meaning $r\rightarrow \infty$). So:
 
 $$
-\frac{\Delta \theta}{2} = \Delta\theta_{d\rightarrow \infty} = \int d\theta = \int_d^{\infty} \frac{1}{r}\left(\frac{r^2 -d^2}{d^2 +\kappa^2}\right)^{-1/2}dr
+\Delta\theta_{d\rightarrow \infty}=\int_{\pi/2 +\Delta\theta/2}^{\pi + \Delta\theta} d\theta = \frac{\pi}{2} + \frac{\Delta \theta}{2} = \int_d^{\infty} \frac{1}{r}\left(\frac{r^2 -d^2}{d^2 +\kappa^2}\right)^{-1/2}dr
 $$
 
 $$
@@ -610,24 +849,40 @@ $$
 We know that $\cosh^2 x - 1 = \sinh^2 x$, so since $\tanh x = \frac{\sinh x}{\cosh x}$ we get that:
 
 $$
-\Delta\theta_{d\rightarrow \infty} = \frac{\sqrt{d^2 +\kappa^2}}{d}\int_0^{\infty} \frac{1}{\cosh x}dx
+\frac{\pi}{2} + \frac{\Delta \theta}{2} = \frac{\sqrt{d^2 +\kappa^2}}{d}\int_0^{\infty} \frac{1}{\cosh x}dx
 $$
 
 Using Rottman we find that this is:
 
 $$
-= \frac{\sqrt{d^2 +\kappa^2}}{d} (2 \arctan (\tanh \left(\frac{x}{2}\right))) \bigg|_0^{\infty}
+= \frac{\sqrt{d^2 +\kappa^2}}{d} (\arcsin(\tanh x)) \bigg|_0^{\infty}
 $$
 
 $$
-= \frac{\sqrt{d^2 +\kappa^2}}{d} \frac{\pi}{2}
+= \frac{\sqrt{d^2 +\kappa^2}}{d} \left(\frac{\pi}{2} - 0\right) = \frac{\sqrt{d^2 +\kappa^2}}{d} \frac{\pi}{2}
 $$
 
-And since the deflection angle of the incoming light is the same as the outgoing, we get that:
+This gives us that 
+$$
+\frac{\pi}{2} + \frac{\Delta \theta}{2} = \frac{\sqrt{d^2 +\kappa^2}}{d} \frac{\pi}{2}
+$$
+
+
+This gives us the expression for the angle deflection:
 
 $$
-\Delta \theta = \theta_{slutt} - \theta_{start} = 2\Delta\theta_{d\rightarrow\infty} = \underline{\underline{\pi \frac{\sqrt{d^2 +\kappa^2}}{d}}}
+\Delta \theta = \theta_{slutt} - \theta_{start} = \underline{\underline{\pi \left(\frac{\sqrt{d^2 +\kappa^2}}{d} - 1\right)}}
 $$
+
+An easy check is to check the boundary where $d \rightarrow \infty$:
+
+$$
+\Delta \theta_{\infty} = \lim_{d\rightarrow \infty}  \pi \left(\frac{\sqrt{d^2 +\kappa^2}}{d} - 1\right) = 0
+$$
+
+As we would expect.
+
+
 
 \end{document}
 
