@@ -108,7 +108,7 @@ $$
 u'' - 2u' + u = e^z
 $$
 
-We are going to make a "guess" for the 	particular solution. We are going to make the guess that the solution is on the form $u_p = Q_n e^z$, where $Q_n$ is a polynomial of degree $n$. The particular solution can not be on the same form as the general solution, so it can not be on the form $e^z$ nor $ze^z$. The smartest guess is $Q_2 e^z$, and the easiest polynomial of degree 2 is $Cz^2$, so we are going to guess:
+We are going to make a 'guess' for the 	particular solution. We are going to make the guess that the solution is on the form $u_p = Q_n e^z$, where $Q_n$ is a polynomial of degree $n$. The particular solution can not be on the same form as the general solution, so it can not be on the form $e^z$ nor $ze^z$. The smartest guess is $Q_2 e^z$, and the easiest polynomial of degree 2 is $Cz^2$, so we are going to guess:
 
 $$
 u_p(z) = Cz^2e^z
@@ -144,7 +144,7 @@ $$
 u(z) = u_h(z) + u_p(z) = Ae^z + Bze^z + \frac{1}{2}z^2 e^z
 $$
 
-But this is only the solution for \ref{eq:transformed_DE}. We need to change the variable back to the original variable. But since we can have both negative and positive $t$ we are going to use $|t|$ in the general solution. We use that
+But this is only the solution for \eqref{eq:transformed_DE}. We need to change the variable back to the original variable. But since we can have both negative and positive $t$ we are going to use $|t|$ in the general solution. We use that
 
 $$
 z = \ln |t|
@@ -236,7 +236,7 @@ l = |(R + 2\pi i) - R | = |2\pi| = 2\pi
 \label{eq:l}
 \end{equation}
 
-Combining \ref{eq:M} and \ref{eq:l}, we finally find that:
+Combining \eqref{eq:M} and \eqref{eq:l}, we finally find that:
 
 $$
 \underline{\underline{\bigg| \int_{\gamma} \frac{e^{3z}}{1+e^z} dz \bigg| \leq M l = \frac{2\pi e^{3R}}{e^R-1}}}
@@ -357,25 +357,25 @@ $$
 We have to make a change of variables. We are interested in getting simpler boundary conditions, so to 'guess' a way to make the $e^{i\pi/4}$ in the lower boundary disappear would give a good ansatz. So we are going to try:
 
 $$
-t = e^{-i\pi/4}z. \qquad dt = e^{-i\pi /4}dz
+x = e^{-i\pi/4}z. \qquad dx = e^{-i\pi /4}dz
 $$
 
 The boundaries then becomes:
 
 $$
-z = \rho e^{i\pi/4} \rightarrow t = \rho, \qquad z = 0 \rightarrow t = 0
+z = \rho e^{i\pi/4} \rightarrow x = \rho, \qquad z = 0 \rightarrow x = 0
 $$
 
 We then look at the integrand:
 
 $$
-e^{iz^2} = e^{i(e^{i\pi/4}t)^2} = e^{ie^{i\pi/2}t^2} = e^{i\cdot it^2} = e^{-t^2}
+e^{iz^2} = e^{i(e^{i\pi/4}x)^2} = e^{ie^{i\pi/2}x^2} = e^{i\cdot ix^2} = e^{-x^2}
 $$
 
 This gives 
 
 $$
-\tilde{I}_3 = \int_{\rho}^0 e^{-t^2} e^{i\pi /4} dt = - \int_0^{\rho} e^{-t^2} e^{i\pi /4} dt
+\tilde{I}_3 = \int_{\rho}^0 e^{-x^2} e^{i\pi /4} dx = - \int_0^{\rho} e^{-x^2} e^{i\pi /4} dx
 $$
 
 We know that 
@@ -387,7 +387,7 @@ $$
 This gives us the final result:
 
 \begin{equation}
-\underline{\underline{\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-t^2}dt}}
+\underline{\underline{\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-x^2}dx}}
 \label{eq:I3}
 \end{equation}
 
@@ -460,7 +460,7 @@ $$
 y = a\alpha
 $$
 
-To find $\alpha$ we look at the end point. We that for $\alpha = \pi/2 \Rightarrow \sin\alpha = 1$, and find 
+To find $\alpha$ we look at the end point. We see that for $\alpha = \pi/2 \Rightarrow \sin\alpha = 1$, and find 
 
 $$
 1 = a\frac{\pi}{2} \Rightarrow a = \frac{2}{\pi}
@@ -485,7 +485,7 @@ $$
 \big| \int_{\gamma_2}e^{iz^2} dz \big| \leq \frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha
 $$
 
-We can use \ref{eq:sinStraight} and see that this implies 
+We can use \eqref{eq:sinStraight} and see that this implies 
 
 $$
 \frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha \leq \frac{1}{2}\int_0^{\pi/2} e^{-2\rho^2 \alpha/\pi}\rho d\alpha
@@ -532,7 +532,7 @@ $\tilde{I} = 0$ independently of $\rho$, so
 
 $\underline{\mathbf{\tilde{I}_1}}$:\\
 
-We saw from \ref{eq:I1} that
+We saw from \eqref{eq:I1} that
 
 \begin{equation}
 \lim_{\rho \rightarrow \infty} \tilde{I}_1 = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{it^2} dt = I
@@ -541,7 +541,7 @@ We saw from \ref{eq:I1} that
 
 $\underline{\mathbf{\tilde{I}_2}}$:\\
 
-We found that \ref{eq:I2}
+We found that \eqref{eq:I2}
 
 $$
 \bigg|\int_{\gamma_2}e^{iz^2}dz \bigg| \leq \frac{\pi}{4\rho}
@@ -598,7 +598,7 @@ $$
 \lim_{\rho \rightarrow \infty} \tilde{I} = \lim_{\rho \rightarrow \infty} \tilde{I}_1 + \lim_{\rho \rightarrow \infty} \tilde{I}_2 + \lim_{\rho \rightarrow \infty} \tilde{I}_3 = 0
 $$
 
-and by using \ref{eq:I1rhoInf}, \ref{I2rhoInf} and \ref{I3rhoinf} we find that
+and by using \eqref{eq:I1rhoInf}, \eqref{I2rhoInf} and \eqref{I3rhoinf} we find that
 
 $$
 \lim_{\rho \rightarrow \infty} \tilde{I} = I + 0 - \frac{1+i}{\sqrt{2}} \frac{\sqrt{\pi}}{2} = 0
@@ -693,7 +693,7 @@ This is now the case for $P_2$, which is explicitly dependent on $\theta$, $\the
 \newpage
 \subsection*{b)}
 
-We are now going to start to minimize the path of $P_1$ \ref{eq:p1}. As mentioned above this means we have to solve the Euler-Lagrange equation, which we showed reduces \ref{eq:lagrange} to
+We are now going to start to minimize the path of $P_1$ \eqref{eq:p1}. As mentioned above this means we have to solve the Euler-Lagrange equation, which we showed reduces \eqref{eq:lagrange} to
 
 $$
 \frac{\partial L}{\partial \theta'} = C
@@ -766,7 +766,7 @@ We can now eliminate $D$, and find that:
 
 \subsection*{c)}
 
-Now we have a separable DE \ref{eq:sepDiff}. We are going to use that the refractive index is given as 
+Now we have a separable DE \eqref{eq:sepDiff}. We are going to use that the refractive index is given as 
 
 \begin{equation}
 n(r) = \sqrt{1 + \frac{\kappa^2}{r^2}}
@@ -779,7 +779,7 @@ $$
 n(d) = \sqrt{1 + \frac{\kappa^2}{d^2}}
 $$
 
-If we insert this into \ref{eq:sepDiff} we get that 
+If we insert this into \eqref{eq:sepDiff} we get that 
 
 $$
 \frac{1}{r^2}\left(\frac{dr}{d\theta}\right)^2 = \frac{r^2}{d^2}\frac{1 + \frac{\kappa^2}{r^2}}{1 + \frac{\kappa^2}{d^2}} -1
@@ -806,10 +806,12 @@ We are interested in finding how much the light is refracted when it moves from 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{3c.png}
-\caption{A crude drawing of the light moving from far away to d, then away from $\mathcal{0}$. We can see that the light deflects the same amount on both the way in and the way out. This figure and the method used below is heavily inspired by the AST1100 lecture notes on gravitational lensing.}
+\caption{A crude drawing of the light moving from far away to d, then away from $\mathcal{O}$. We can see that the light deflects the same amount on both the way in and the way out. This figure and the method used below is heavily inspired by the AST1100 lecture notes on gravitational lensing.}
 \end{figure}
 
-Since the refractive index is only dependent on the distance from $\mathcal{O}$ the deflection angle will be the same as the light moves in, as when it moves out. This means that we only have to find the angle form $r = d$ to $r = \infty$($d$ being the nearest point to $\mathcal{O}$, and I am going to set "far away" as meaning $r\rightarrow \infty$). The angle is also defined such that a non-deflected light beam would have a $\Delta \theta = 0$, there is an other alternative where a non-deflected beam would have $\Delta \theta = \pi$. As seen in the picture the angular deflection from $r = d$ to $r = \infty$ is $(\pi + \Delta\theta) - (\pi/2 +\Delta\theta/2)$. So:
+Since the refractive index is only dependent on the distance from $\mathcal{O}$ the deflection angle will be the same as the light moves in, as when it moves out. This means that we only have to calculate the deflection angle for the light moving from $r = d$ to $r = \infty$($d$ being the nearest point to $\mathcal{O}$, and I am going to set 'far away' as meaning $r\rightarrow \infty$). The angle is also defined such that a non-deflected light beam would have a $\Delta \theta = 0$, there is an other alternative where a non-deflected beam would have $\Delta \theta = \pi$. \\
+
+As seen in the picture the angular deflection from $r = d$ to $r = \infty$ is $(\pi + \Delta\theta) - (\pi/2 +\Delta\theta/2)$. So:
 
 $$
 \Delta\theta_{d\rightarrow \infty}=\int_{\pi/2 +\Delta\theta/2}^{\pi + \Delta\theta} d\theta = \frac{\pi}{2} + \frac{\Delta \theta}{2} = \int_d^{\infty} \frac{1}{r}\left(\frac{r^2 -d^2}{d^2 +\kappa^2}\right)^{-1/2}dr
@@ -869,10 +871,10 @@ $$
 $$
 
 
-This gives us the expression for the angle deflection:
+Which gives us the expression for the angle deflection:
 
 $$
-\Delta \theta = \theta_{slutt} - \theta_{start} = \underline{\underline{\pi \left(\frac{\sqrt{d^2 +\kappa^2}}{d} - 1\right)}}
+\Delta \theta = \theta_{end} - \theta_{start} = \underline{\underline{\pi \left(\frac{\sqrt{d^2 +\kappa^2}}{d} - 1\right)}}
 $$
 
 An easy check is to check the boundary where $d \rightarrow \infty$:
@@ -889,7 +891,7 @@ $$
 \Delta \theta = \pi\frac{\sqrt{d^2 + \kappa^2}}{d}
 $$
 
-I think that the way I have defines a non-deflected beam is more intuitive, but I mentions this just to show the other alternative.
+I think that the way I have defined a non-deflected beam is more intuitive, but I mention this just to show the other alternative.
 
 
 
