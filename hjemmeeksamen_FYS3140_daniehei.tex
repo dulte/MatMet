@@ -157,19 +157,19 @@ We now get the correct general solution:
 \end{equation}
 
 
-We can now apply the initial conditions $u(1) = 1$, $u(e) = e$:
+We can now apply the initial conditions $u(1) = 1$, $u(e) = 2e$:
 
 $$
 u(1) = \tilde{A} = 1 
 $$
 $$
-u(e) = \tilde{A}e + \tilde{B}e + \frac{1}{2}e = e \Rightarrow \tilde{B} = -\frac{1}{2}
+u(e) = \tilde{A}e + \tilde{B}e + \frac{1}{2}e = 2e \Rightarrow \tilde{B} = \frac{1}{2}
 $$
 
 This gives us the final solution:
 
 \begin{equation}
-\underline{\underline{u(t) = t -\frac{1}{2}t\ln |t| + \frac{1}{2}t\ln |t|^2}}
+\underline{\underline{u(t) = t +\frac{1}{2}t\ln |t| + \frac{1}{2}t\ln |t|^2}}
 \end{equation}
 \newpage
 
@@ -197,7 +197,7 @@ $$
 \bigg| \int_{\gamma} f(z) dz \bigg| \leq M l 
 $$
 
-Where $M = \max_{gamma} |f(z)|$ and $l$ is the length of $\gamma$. First we are going to evaluate
+Where $M = \max_{\gamma} |f(z)|$ and $l$ is the length of $\gamma$. First we are going to evaluate
 
 $$
 M = \max_{\gamma}\bigg|\frac{e^{3z}}{1+e^z}\bigg|
@@ -222,14 +222,14 @@ $$
 \min_{\gamma} |1+ e^z| = \min_{\gamma}|e^z - (-1)| \geq \min_{\gamma}(|e^z| - 1) = e^R -1
 $$
 
-I used $|e^z| - 1$ instead of $1-|e^R|$ to make sure that the denominator is positive, since $R<0 \Leftrightarrow e^R > 1$. So we get that:
+I used $|e^z| - 1$ instead of $1-|e^R|$ to make sure that the denominator is positive, since $R<0 \Leftrightarrow e^R > 1$. So now we have the maximum on the contour:
 
 \begin{equation}
-M = \frac{e^R}{e^R - 1}
+M = \frac{e^{3R}}{e^R - 1}
 \label{eq:M}
 \end{equation}
 
-We can now look at the length $l$:
+We can now look at the length $l$, which is the end point minus the starting point:
 
 \begin{equation}
 l = |(R + 2\pi i) - R | = |2\pi| = 2\pi
@@ -239,7 +239,7 @@ l = |(R + 2\pi i) - R | = |2\pi| = 2\pi
 Combining \ref{eq:M} and \ref{eq:l}, we finally find that:
 
 $$
-\bigg| \int_{\gamma} \frac{e^{3z}}{1+e^z} dz \bigg| \leq M l = \frac{2\pi e^{3R}}{e^R-1}
+\underline{\underline{\bigg| \int_{\gamma} \frac{e^{3z}}{1+e^z} dz \bigg| \leq M l = \frac{2\pi e^{3R}}{e^R-1}}}
 $$
 
 
@@ -270,7 +270,7 @@ $$
 = e^{-2xy}(\cos(x^2-y^2) + i\sin(x^2-y^2))
 $$
 
-We want this on the form $f(z) = u(x,y) + v(x,y)i$, so
+We want this to be on the form $f(z) = u(x,y) + v(x,y)i$, where $u = Re(f)$ and $u = Im(f)$, so
 
 $$
 u(x,y) = e^{-2xy}\cos(x^2-y^2), \qquad v(x.y) = e^{-2xy}\sin(x^2-y^2)
@@ -291,13 +291,13 @@ $$
 \frac{\partial u}{\partial y} = -2e^{-2xy}(x\sin(x^2-y^2) + y\cos(x^2 - y^2))
 $$
 
-We see from these that:
+From this we can quickly see that
 
 $$
 \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
 $$
 
-And so we see that $e^{iz^2}$ satisfy the Cauchy-Riemann conditions. Since we haven't chosen any specific $x,y$, we get that this is true independent of our choice of $x$ and $y$, meaning that for every $\rho$, $e^{iz^2}$ is analytic.\\
+And so we see that $e^{iz^2}$ satisfy the Cauchy-Riemann conditions. Since we haven't explicitly chosen any specific $x,y$, we get that this is true independent of our choice of $x$ and $y$, meaning that for every $\rho$, $e^{iz^2}$ is analytic.\\
 
  The Cauchy Theorem says that if a function $f(z)$ is analytic inside and on a contour $\Gamma$ when
 
@@ -305,7 +305,7 @@ $$
 \int_{\Gamma} f(z) dz = 0
 $$
 
-Since $e^{iz^2}$ is analytic inside and on $\Gamma_{\rho}$ then:
+Since $e^{iz^2}$ is analytic on the entire complex plane, and therefor inside and on $\Gamma_{\rho}$:
 
 $$
 \underline{\underline{\tilde{I} = \int_{\Gamma_{\rho}} e^{iz^2}dz = 0}}
@@ -322,7 +322,7 @@ $$
 is a integral over a line on the real axis, so to make this an integral of a real value we are going to do the trivial transformation:
 
 $$
-z = x, \qquad dz = dx
+z = t, \qquad dz = dt
 $$
 
 And for the boundaries
@@ -334,17 +334,18 @@ $$
 So the integral becomes
 
 $$
-\int_{\gamma_1} e^{iz^2} dz \rightarrow \int_0^{\rho} e^{ix^2}dx
+\int_{\gamma_1} e^{iz^2} dz = \int_0^{\rho} e^{it^2}dt
 $$
 
-This is closely connected to out original integral $I$. As $\rho$ becomes larger and larger, $\int_0^{\rho} e^{ix^2}dx$ comes closer and closer to $I$. So:
+This is closely connected to our original integral $I$. As $\rho$ becomes larger and larger, $\int_0^{\rho} e^{it^2}dt$ comes closer and closer to $I$. So:
 
 \begin{equation}
-I = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{ix^2}dx = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{iz^2}dz
+I = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{it^2}dt = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{iz^2}dz
 \label{eq:I1}
 \end{equation}
 
 
+\newpage
 \subsection*{d)}
 
 We have the integral
@@ -353,28 +354,28 @@ $$
 \tilde{I}_ 3 = \int_{\gamma_3}e^{iz^2} dz = \int_{\rho e^{i\pi/4}}^0 e^{iz^2} dz 
 $$
 
-We have to make a change of variables. We are interested in getting simpler boundary conditions, so a way to make the $e^{i\pi/4}$ the lower boundary disappear would give a good ansatz. So we are going to try:
+We have to make a change of variables. We are interested in getting simpler boundary conditions, so to 'guess' a way to make the $e^{i\pi/4}$ in the lower boundary disappear would give a good ansatz. So we are going to try:
 
 $$
-x = e^{-i\pi/4}z. \qquad dx = e^{-i\pi /4}dz
+t = e^{-i\pi/4}z. \qquad dt = e^{-i\pi /4}dz
 $$
 
 The boundaries then becomes:
 
 $$
-z = \rho e^{i\pi/4} \rightarrow x = \rho, \qquad z = 0 \rightarrow x = 0
+z = \rho e^{i\pi/4} \rightarrow t = \rho, \qquad z = 0 \rightarrow t = 0
 $$
 
 We then look at the integrand:
 
 $$
-e^{iz^2} = e^{i(e^{i\pi/4}x)^2} = e^{ie^{i\pi/2}x^2} = e^{i\cdot ix^2} = e^{-x^2}
+e^{iz^2} = e^{i(e^{i\pi/4}t)^2} = e^{ie^{i\pi/2}t^2} = e^{i\cdot it^2} = e^{-t^2}
 $$
 
 This gives 
 
 $$
-\tilde{I}_3 = \int_{\rho}^0 e^{-x^2} e^{i\pi /4} dx = - \int_0^{\rho} e^{-x^2} e^{i\pi /4} dx
+\tilde{I}_3 = \int_{\rho}^0 e^{-t^2} e^{i\pi /4} dt = - \int_0^{\rho} e^{-t^2} e^{i\pi /4} dt
 $$
 
 We know that 
@@ -386,7 +387,7 @@ $$
 This gives us the final result:
 
 \begin{equation}
-\underline{\underline{\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-x^2}dx}}
+\underline{\underline{\int_{\gamma_3}e^{iz^2} dz = -\frac{1+i}{\sqrt{2}}\int_0^{\rho}e^{-t^2}dt}}
 \label{eq:I3}
 \end{equation}
 
@@ -429,10 +430,10 @@ $$
 \big|\int_0^{\pi/4} e^{i\rho^2 \cos(2\theta)}e^{-\rho^2 \sin(2\theta)} i\rho e^{i\theta} d\theta \big| \leq \int_0^{\pi/4} |e^{i\rho^2 \cos(2\theta)}||e^{-\rho^2 \sin(2\theta)}|\underbrace{|i|}_{=1}\underbrace{|e^{i\theta}|}_{=1}\rho d\theta
 $$
 
-We see that $e^{i\rho^2 \cos(2\theta)}$ is a rotation, meaning that $|e^{i\rho^2 \cos(2\theta)}| = 1$. So we get
+We see that $e^{i\rho^2 \cos(2\theta)}$ is a rotation, meaning that $|e^{i\rho^2 \cos(2\theta)}| = 1$. We are here moving from a complex to a real function, meaning that we can imply the lemma from the exercise(I do not think this lemma is necessary here, because of the absolute values, meaning that the inequality below instead becomes an equality). So we get
 
 $$
-= \int_0^{\pi/4} |e^{-\rho^2 \sin(2\theta)}|\rho d\theta
+\int_0^{\pi/4} |e^{i\rho^2 \cos(2\theta)}||e^{-\rho^2 \sin(2\theta)}|\rho d\theta \leq \int_0^{\pi/4} |e^{-\rho^2 \sin(2\theta)}|\rho d\theta
 $$
 
 We now make an other change of variables:
@@ -441,7 +442,7 @@ $$
 2\theta = \alpha, \qquad d\alpha = \frac{1}{2} d\theta, \qquad 0 \leq \alpha \leq \pi/2
 $$
 
-And since $e^{-\rho^2 \sin(2\theta)}$ is a real quantity we get $|e^{-\rho^2 \sin(2\theta)}| = e^{-\rho^2 \sin(2\theta)}$. Combining these we get 
+And since $e^{-\rho^2 \sin(2\theta)}$ is a real, positive quantity we get $|e^{-\rho^2 \sin(2\theta)}| = e^{-\rho^2 \sin(2\theta)}$. Combining these we get 
 
 $$
 \int_0^{\pi/4} |e^{-\rho^2 \sin(2\theta)}|\rho d\theta = \frac{1}{2}\int_0^{\pi/2} e^{-\rho^2 \sin(\alpha)}\rho d\alpha
@@ -453,7 +454,7 @@ $$
 y(\alpha) - y_0 = a(\alpha - \alpha_0)
 $$
 
-First, for $\alpha = 0$ we have $\sin \alpha = 0$, so $x_0 = y_0 = 0$.
+First, for $\alpha = 0$ we have $\sin \alpha = 0$, so $x_0 = y_0 = 0$. Meaning:
 
 $$
 y = a\alpha
@@ -471,7 +472,7 @@ $$
 y(\alpha) = \frac{2}{\pi}\alpha
 $$
 
-And from the hint we get that:
+So from the hint we get that:
 
 \begin{equation}
 \sin \alpha \geq \frac{2\alpha}{\pi}
@@ -534,7 +535,7 @@ $\underline{\mathbf{\tilde{I}_1}}$:\\
 We saw from \ref{eq:I1} that
 
 \begin{equation}
-\lim_{\rho \rightarrow \infty} \tilde{I}_1 = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{ix^2} dx = I
+\lim_{\rho \rightarrow \infty} \tilde{I}_1 = \lim_{\rho \rightarrow \infty} \int_0^{\rho} e^{it^2} dt = I
 \label{eq:I1rhoInf}
 \end{equation}\\
 
@@ -575,19 +576,19 @@ $\underline{\mathbf{\tilde{I}_3}}$:\\
 For the last integral we have that 
 
 $$
-\lim_{\rho \rightarrow \infty}  \int_{\gamma_3}e^{iz^2}dz = \lim_{\rho \rightarrow \infty} -\frac{1+i}{\sqrt{2}}  \int_0^{\rho}e^{-x^2}dx 
+\lim_{\rho \rightarrow \infty}  \int_{\gamma_3}e^{iz^2}dz = \lim_{\rho \rightarrow \infty} -\frac{1+i}{\sqrt{2}}  \int_0^{\rho}e^{-t^2}dt 
 $$
 
 We can look at the last part of that integral:
 
 $$
-\lim_{\rho \rightarrow \infty} \int_0^{\rho}e^{-x^2}dx  = \int_0^{\infty}e^{-x^2}dx
+\lim_{\rho \rightarrow \infty} \int_0^{\rho}e^{-t^2}dt  = \int_0^{\infty}e^{-t^2}dt
 $$
 
 This is a know integral we can look up in Rottman, where we find this to equal $\frac{\sqrt{\pi}}{2}$. So:
 
 \begin{equation}
-\lim_{\rho \rightarrow \infty} \tilde{I}_3 = \lim_{\rho \rightarrow \infty} \int_{\gamma_3}e^{iz^2}dz = \lim_{\rho \rightarrow \infty} -\frac{1+i}{\sqrt{2}}  \int_0^{\rho}e^{-x^2}dx = -\frac{1+i}{\sqrt{2}} \frac{\sqrt{\pi}}{2}
+\lim_{\rho \rightarrow \infty} \tilde{I}_3 = \lim_{\rho \rightarrow \infty} \int_{\gamma_3}e^{iz^2}dz = \lim_{\rho \rightarrow \infty} -\frac{1+i}{\sqrt{2}}  \int_0^{\rho}e^{-t^2}dt = -\frac{1+i}{\sqrt{2}} \frac{\sqrt{\pi}}{2}
 \label{I3rhoinf}
 \end{equation}\\
 
@@ -606,25 +607,25 @@ $$
 This gives us the final result:
 
 $$
-I = \int_0^{\infty}e^{ix^2}dx =\underline{\underline{\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}}}
+I = \int_0^{\infty}e^{it^2}dt =\underline{\underline{\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}}}
 $$\\
 
 We can now use this to evaluate some integrals. We are going to start by noting that:
 
 $$
-\int_0^{\infty}e^{ix^2}dx = \int_0^{\infty} \cos(x^2) + i\sin(x^2)dx
+\int_0^{\infty}e^{it^2}dt = \int_0^{\infty} \cos(t^2) + i\sin(t^2)dt
 $$
 
 This means that $I$ has a real and an imaginary part. We can quickly see from this that:
 
 $$
-\int_0^{\infty} \cos(x^2)dx = Re(\int_0^{\infty}e^{ix^2}dx) = Re\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
+\int_0^{\infty} \cos(t^2)dt = Re(\int_0^{\infty}e^{it^2}dt) = Re\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
 $$
 
 And
 
 $$
-\int_0^{\infty} \sin(x^2)dx = Im(\int_0^{\infty}e^{ix^2}dx) = Im\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
+\int_0^{\infty} \sin(t^2)dt = Im(\int_0^{\infty}e^{it^2}dt) = Im\left(\left(\frac{1}{2} +\frac{i}{2}\right) \sqrt{\frac{\pi}{2}}\right) = \underline{\underline{\frac{1}{2}\sqrt{\frac{\pi}{2}}}}
 $$
 
 We get that the two integrals are equivalent. 
@@ -808,7 +809,7 @@ We are interested in finding how much the light is refracted when it moves from 
 \caption{A crude drawing of the light moving from far away to d, then away from $\mathcal{0}$. We can see that the light deflects the same amount on both the way in and the way out. This figure and the method used below is heavily inspired by the AST1100 lecture notes on gravitational lensing.}
 \end{figure}
 
-Since the refractive index is only dependent on the distance from $\mathcal{O}$ the deflection angle will be the same as the light moves in, as when it moves out. This means that we only have to find the angle form $r = d$ to $r = \infty$(I am going to set "far away" as meaning $r\rightarrow \infty$). So:
+Since the refractive index is only dependent on the distance from $\mathcal{O}$ the deflection angle will be the same as the light moves in, as when it moves out. This means that we only have to find the angle form $r = d$ to $r = \infty$($d$ being the nearest point to $\mathcal{O}$, and I am going to set "far away" as meaning $r\rightarrow \infty$). The angle is also defined such that a non-deflected light beam would have a $\Delta \theta = 0$, there is an other alternative where a non-deflected beam would have $\Delta \theta = \pi$. As seen in the picture the angular deflection from $r = d$ to $r = \infty$ is $(\pi + \Delta\theta) - (\pi/2 +\Delta\theta/2)$. So:
 
 $$
 \Delta\theta_{d\rightarrow \infty}=\int_{\pi/2 +\Delta\theta/2}^{\pi + \Delta\theta} d\theta = \frac{\pi}{2} + \frac{\Delta \theta}{2} = \int_d^{\infty} \frac{1}{r}\left(\frac{r^2 -d^2}{d^2 +\kappa^2}\right)^{-1/2}dr
@@ -880,7 +881,16 @@ $$
 \Delta \theta_{\infty} = \lim_{d\rightarrow \infty}  \pi \left(\frac{\sqrt{d^2 +\kappa^2}}{d} - 1\right) = 0
 $$
 
-As we would expect.
+As we would expect.\\
+
+ As mentioned above, if we use the definition that for a non-deflected beam $\Delta \theta = \pi$ we'll get an other answer. We would instead get the answer:
+
+$$
+\Delta \theta = \pi\frac{\sqrt{d^2 + \kappa^2}}{d}
+$$
+
+I think that the way I have defines a non-deflected beam is more intuitive, but I mentions this just to show the other alternative.
+
 
 
 
