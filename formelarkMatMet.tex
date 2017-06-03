@@ -257,10 +257,103 @@ FOr the first term, use a closed contour in the upper part of the complex plane,
 \textbf{Alt 2: safe as long as P/Q is real.}
 Note that $\cos(mx) = Re (e^{mx})$(and $\sin(mx) = Im (e^{mx})$). We can therfor use $\cos(mx) \rightarrow e^{imx}$ and then take the real part at the end(or the imaginary if we have $\sin(mx)$
 
+\subsubsection{Jordan's lemma:}
+If $m>0$(real) and P/Q is the quotient of two polynomial such that $deg(Q) \geq deg(P) + 1$, then
+\begin{equation}
+\lim_{\rho\rightarrow \infty}\int_{C_{\rho}^+}\frac{P}{Q}e^{imz}dz = 0
+\end{equation}
+Where $C_{\rho}^+$ is the contour in the upper plane. Same holds for $m<0$ but with $C_{\rho}^-$ in the lower plane.
 
+\subsubsection{Type 3:}
+Singularities on the real plane. We get Principal Values.
+\begin{equation}
+PV\int_a^b f(x) dx = \lim_{r\rightarrow 0}\int_a^{c-r}f(x) dx + \int_{c+r}^b f(x) dx
+\end{equation}
+Where $c$ is a singularity. If the singularities are simple poles the integral can be calculated with the residue theorem.
+\begin{equation}
+PV\int_{-\infty}^{\infty}f(x)dx = 2\pi i\sum_k Res(z_k) + \pi i \sum_j Res(z_j)
+\end{equation}
+Where $z_k$ are singularities on the upper half plane, and $z_j$ are singularities on the real line.
 
-
-
+\section{Tensor:}
+\subsection{Cartesian Tensor}
+Transform properly under rotation of Cartesian coordinate system.
+\begin{equation}
+e'_i\cdot e_j = \cos\theta_{i'j} \equiv A_{ij}
+\end{equation}
+\subsubsection{Transformation of a position vector}
+\begin{equation}
+\vec{r} = x_i e_i = x'_j e'_j
+\end{equation}
+\begin{equation}
+x'_i = \vec{r}\cdot e'_i = e'_i\cdot e_jx_j = A_{ij}x_j
+\end{equation}
+Reverse:
+\begin{equation}
+x_i = e_i\cdot\vec{r} = e_i\cdot e'_jx'_j = A_{ji}'x_j = A_{ij}^T x'_j
+\end{equation}
+\begin{equation}
+A^{-1} = A^T
+\end{equation}
+\subsubsection{Cartesian vector/tensor}
+\begin{equation}
+v' = Av, \qquad T'_{kl} = A_{ki}A_{lj}T_{ij}
+\end{equation}
+\begin{equation}
+\vec{j}=\sigma \vec{E} \text{ Ohm's law}
+\end{equation}
+\subsubsection{Inertia Tensor}
+Rigid body rotation around fixed axis:
+\begin{equation}
+\vec{L} = I\vec{\omega} 
+\end{equation}
+Rotation around a point. $I$ is a rank 2 tensor
+\begin{equation}
+L_i = I_{ij}\omega_j
+\end{equation}
+Determined from
+\begin{equation}
+\vec{L} = \sum_k m_kr_k\times(\omega\times r_k)
+\end{equation}
+Uniform mass density: sum goes to integral.$I$ is symmetric: can find coord. system in which $I$ is diagonal. Eigenvetors (axes of new coord. system): Principal axes of inertia.
+\subsection{Levi-Civita and Kronicker Delta}
+\begin{equation}
+\delta_{ij} = 
+\begin{cases}
+1 & i = j\\
+0
+\end{cases}
+\end{equation}
+\begin{equation}
+\epsilon_{ijk} = 
+\begin{cases}
+1 & \text{ even permutation}\\
+-1 & \text{ odd permutation}\\
+0
+\end{cases}
+\end{equation}
+\begin{equation}
+\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}
+\end{equation}
+Inner product: $\vec{u}\cdot\vec{c} = u_iv_j\delta_{ij} = u_iu_i$\\
+Cross Product: $\vec{A}\times\vec{B} = \epsilon_{ijk}A_jB_k$\\
+Curl: $(\nabla\times\vec{V})_i = \epsilon_{ijk}\frac{\partial}{\partial x_j}V_k$
+\section{Calculus of Variation:}
+Minimize:
+\begin{equation}
+I = \int_{x_1}^{x_2}F(x,y,y') dx
+\end{equation}
+\begin{equation}
+\frac{\partial F}{\partial y} - \frac{d}{dx}\left(\frac{\partial F}{\partial y'}\right) = 0
+\end{equation}
+Can simplify Euler-Lagrange by change of variables:
+\begin{equation}
+x' = \frac{1}{y'}, \qquad dx = x'dy \text{ or } dy = y'dx
+\end{equation}
+\subsection{Optics -- Fermat's Principle:}
+\begin{equation}
+P = \int n ds, \qquad ds = \sqrt{dx^2 + dy^2}
+\end{equation}
 
 \end{document}
 
