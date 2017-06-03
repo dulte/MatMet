@@ -1,0 +1,266 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig1}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+
+\section{Kompleks analyse:}
+\subsection{Komplekse tall:}
+\begin{equation}
+z = x+iy, \qquad \bar{z} = x - iy,\qquad z=r(\cos \theta + i\sin\theta)= re^{i\theta}
+\end{equation}
+$r = |z|$ er modulus, $\theta$ er argumentet.
+\begin{equation}
+z + \bar{z} = 2Re(z)\qquad z - \bar{z} = 2Im(z), \qquad z\bar{z} = |z|^2 = r^2 = x^2 + y^2
+\end{equation}
+\begin{equation}
+x = \frac{1}{2}(z + \bar{z}),\qquad y = \frac{1}{2i}(z-\bar{z})
+\end{equation}
+$z-z_0| < R$ er alle $z$ innenfor en radius $R$
+\subsection{Komplekse røtter:}
+\begin{equation}
+z^{1/n} = \sqrt[n]{r}e^{i\theta/n} = \sqrt[n]{r}(\cos\theta/n + i\sin\theta/n) = \omega_0
+\end{equation}
+Dette gir bare 'the principal root', resten er gitt ved
+\begin{equation}
+\omega_k = \sqrt[n]{r}e^{i\frac{\theta + 2\pi k}{n}}
+\end{equation}
+
+\subsection{Analytic functions:}
+Def: A function is analytic in a region of the complex plane if it has a (unique) derivative at every point in that region.\\
+
+All analytic functions can be written in terms of $z = x+iy$ alone.
+\subsubsection{Cauchy-Riemann equation:}
+\begin{equation}
+f(z) = u(x,y) + iv(x,y)
+\end{equation}
+\begin{equation}
+\frac{\partial u}{\partial x} = -\frac{\partial v}{\partial y}, \qquad \frac{\partial v}{\partial x} = \frac{\partial v}{\partial y}
+\end{equation}
+If this holds in a region, that $f$ is analytic in this region, and vice versa. 
+
+\begin{itemize}
+\item Regular points: $f(z)$ is analytic
+\item Singular point/singularities: A point where $f(z)$ is not analytic.
+\item Isolated singularity: a point where $f$ is not analytic, but is a limit of points where $f$ is analytic.
+\end{itemize}
+
+If $f$ is analytic in some region, it has first order derivatives, then it also has derivatives of all orders in that region.
+
+\subsubsection{Harmonic Functions:}
+If $f = u + iv$ is analytic in a region, then $u$ and $v$ are harmonic:
+\begin{equation}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0\qquad \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} = 0
+\end{equation}
+If $u$ is harmonic, one can find a $v$ such that $f = u + iv$ is analytic. $v$ is the harmonic conjugate of $u$.
+
+\subsection{Contour integrals:}
+\begin{equation}
+\int_{\Gamma} f(z) dz = \lim_{z\rightarrow \infty} \sum_{k=1}^{\infty} f(c_k) \Delta z_k
+\end{equation}
+For a generalized curve with parametrization $z(t)$:
+\begin{equation}
+\int_{\gamma}f(t)dz = \int_a^b f(z(t))z'(t)dt
+\end{equation}
+\subsubsection{An important integral:}
+$C-r = |z-z_0| = r$:
+\begin{equation}
+I = \int_{C_r}(z-z_0)^n dz = 
+\begin{cases}
+0 & n \neq -1\\
+2\pi i & n = -1
+\end{cases}
+\end{equation}
+\subsubsection{Upper bound estimate:}
+Generalized triangle inequality:
+\begin{equation}
+\bigg| \sum_k z_k\bigg| \leq \sum_k|z_k|
+\end{equation}
+Applied to Riemann sum we get the upper bound estimate:
+\begin{equation}
+\bigg| \int_{\gamma}f(z) dz\bigg| \leq ML
+\end{equation}
+Where $M = \max|f(z)|$ and $L$ is the length of the curve.
+
+\subsubsection{Path:}
+If $f$ is continuous everwhere in $D$, then contour integrals are independent of paths, and any loop integral is zero. One can also deform a contour without crossing any singularities and get that:
+\begin{equation}
+\int_{\Gamma_1}f(z) dz = \int_{\Gamma_2}f(z) dz
+\end{equation}
+
+\subsubsection{Cauchy Theorem:}
+If $f$ is analytic in a simply connected domain $D$ with no singularities, and $\Gamma$ is any closed contour in $D$, then
+\begin{equation}
+\int_{\Gamma}f(z) dz = 0
+\end{equation}
+\subsubsection{Cauchy's integral formula:}
+Let $\Gamma$ be a simple, closed, positively oriented contour. Assume $f$ is analytic in some simply connected domain $D$ containing $\Gamma$, and some $z_0$ is inside $\Gamma$. Then:
+\begin{equation}
+f(z_0) = \frac{1}{2\pi i}\int_{\Gamma}\frac{f(z)}{z-z_0}dz
+\end{equation}
+\subsubsection{Generalized Cauchy integral formula:}
+\begin{equation}
+f^{(n)}(z) = \frac{n!}{2\pi i}\oint_{\Gamma}\frac{f(w)}{(z-w)^{n+1}}dw
+\end{equation}
+\subsubsection{Cauchy inequality:}
+Let $f$ be analytic on and inside a circle($C_r$) of radius R, centered at $z_0$. If $|f(z)|\leq M$ for some $z$ on $C_r$, then the derivatives satisfy:
+\begin{equation}
+|f^{(n)}(z_0)| \leq \frac{n!M}{R^n}
+\end{equation}
+This gives Liuvilles theorem: A function which is analytic and bounded in the entire complex plane, is constant.
+\subsection{Taylor and Laurent Series:}
+\subsubsection{Taylor:}
+\begin{equation}
+f(z) = f(z_0) + f'(z_0)(z-z_0) + \frac{1}{2!}f''(z_0)(z-z_0)^2 + ... = \sum_n \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n
+\end{equation}
+If $f$ is analytic in the disk $|z - z_0|<R$ then the above Taylor series converges in that disk.[i.e. the disk touching the nearest singularity]\\
+
+If $f$ is analytic at $z_0$, then the Taylor series for $df/dz$ can be obtained by termwise differentiation.
+
+\subsubsection{Laurent:}
+Let $f$ be analytic in the annulus $r < |z-z_0| < R$. Then $f$ can be expanded there as the sum of two series:
+\begin{equation}
+f(z) = \sum_{k=0}^{\infty} a_k(z-z_0)^k +\sum_{k=1}^{\infty} b_k(z-z_0)^{-k} 
+\end{equation}
+With
+\begin{equation}
+a_n = \frac{1}{2\pi i}\oint_{\Gamma}\frac{f(z)}{(z-z_0)^{n+1}}dz\qquad b_n = \frac{1}{2\pi i}\oint_{\Gamma}\frac{f(z)}{(z-z_0)^{-n+1}}dz
+\end{equation}
+Def: The coefficient $b_1$ of the $1/(z-z_0)$ term is the residue of $f(z)$ at $z = z_0$.
+
+Laurent series are unique. So to find them we can use
+
+\begin{equation}
+\frac{1}{1-\omega} = \sum_{n=0}^{\infty}\omega^2 \text{ , when } |\omega|<1
+\end{equation}
+
+\subsection{Zeros:}
+\begin{itemize}
+\item A zeros of a function is a point where $f$ is analytic and $f(z_0) = 0$
+\item A zeros of order $m$: $f(z_0) = f'(z_0) = ...= f^{m-1}(z_0) = 0$, $f^m(z_0) \neq 0$
+\item Can be factorized as: $f(z) = (z-z_0)^m \cdot g(z)$, where $g(z)$ is analytic and $g(z_0) \neq 0$
+\end{itemize}
+\subsection{Isolated singularities:}
+Let $f$ have a Laurent series, then we can have:
+\subsubsection{Removable Singularity/Regular point:}
+If all $b_n = 0$ at $z_0$. $f(z)$ has a limit $z\rightarrow z_0$ and we can be redefined such that $f$ is analytic at $z_0$.
+\subsubsection{Essential Singularity:}
+Infinitely many b-terms at $z_0$
+\subsubsection{Pole of order $m$}
+Order $m$ is the highest exponent of the $1/(z-z_0)$ terms.
+\begin{equation}
+f(z) = \frac{b_m}{(z-z_0)^m}+ ... + \frac{b_1}{z-z_0} + a_0 + a_1(z-z_0) +...
+\end{equation}
+
+ $f(z)$ can be written as $\frac{g(z)}{(z-z_0)^m}$. A pole of order 1 $(m = 1)$ is a Simple pole.
+ 
+\subsection{Residue Theory:}
+\subsubsection{Residue Theorem:}
+If $\Gamma$ is a simple, closed, positively oriented contour, and $f$ is analytic on and inside $\Gamma$ except at the points $z_0,z_1,...,z_n$ inside $\Gamma$, then
+\begin{equation}
+\oint_{\Gamma}f(z)dz = 2\pi i \sum_{k=0}^n Res(f,z_k)
+\end{equation}
+
+\subsubsection{Determining the residues:}
+1: Read off $b_1$ from the Laurent series.\\
+
+2: Simple poles:
+\begin{equation}
+Res(z_0) = b_1 = \lim_{z\rightarrow z_0}(z-z_0)f(z)
+\end{equation}
+Finite answer only if the pole is of first order. 
+\begin{equation}
+f(z) = \frac{P(z)}{Q(z)} \Rightarrow Res(z_0) = \frac{P(z_0)}{Q'(z_0)}
+\end{equation}
+
+
+3: Multiple poles:
+If $f$ has a pole of order $m$ at $z_0$, then
+\begin{equation}
+Res(z_0) = \lim_{z \Rightarrow z_0}\left[\frac{1}{(m-1)!}\frac{d^{m-1}}{dz^{m-1}}\left((z-z_0)^mf(z))\right)\right]
+\end{equation}
+
+Ok to overshoot with value if $m$.
+
+\subsection{Applications to Real Integrals:}
+\subsubsection{Type 1:}
+Rational and finite functions of $\sin\theta$ and $\cos\theta$ over the interval$[0,2\pi]$. Use:
+\begin{itemize}
+\item $z = e^{i\theta}$, \qquad$d\theta = dz/iz$
+\item $\cos\theta = \frac{1}{2}(e^{i\theta} + e^{-i\theta}) = \frac{1}{2}(z+1/z)$,\qquad $\sin\theta = \frac{1}{2i}(e^{i\theta} - e^{-i\theta}) = \frac{1}{2i}(z-1/z)$
+\item then use residue theorem.
+\end{itemize}
+\subsubsection{Type 2a}
+Integrals of rational functions from $-\infty$ to $\infty$
+\begin{equation}
+I = \int_{-\infty}^{\infty} \frac{P(x)}{Q(x)}dx
+\end{equation}
+\begin{itemize}
+\item Make a contour $\gamma_{\rho}$ from $-\rho$ to $\rho$
+\item Add a second contour from $\rho$ via a the complex plane(half circle in the upper part of the complex plane) back to $-\rho$, $C_{\rho}$.
+\item use the residue theorem. Remember that the singularities have to be in the upper part
+\item Show that the contribution form $C_{\rho}$ vanishes as $\rho \rightarrow \infty$
+\end{itemize}
+
+\subsubsection{Type 2b:}
+\begin{equation}
+I = \int_{-\infty}^{\infty} \frac{P(x)}{Q(x)}\cos(mx)dx, \qquad I = \int_{-\infty}^{\infty} \frac{P(x)}{Q(x)}\sin(mx)dx
+\end{equation}
+
+\textbf{Alt 1(Always safe):}
+
+use $\cos(mx) = \frac{1}{2}(e^{imx} + e^{-imx})$
+\begin{equation}
+I = \frac{1}{2}\int_{-\infty}^{\infty} \frac{P(x)}{Q(x)}e^{imx}dx + \int_{-\infty}^{\infty} \frac{P(x)}{Q(x)}e^{-imx}dx
+\end{equation}
+FOr the first term, use a closed contour in the upper part of the complex plane, for the second term use one in the lower half.
+
+\textbf{Alt 2: safe as long as P/Q is real.}
+Note that $\cos(mx) = Re (e^{mx})$(and $\sin(mx) = Im (e^{mx})$). We can therfor use $\cos(mx) \rightarrow e^{imx}$ and then take the real part at the end(or the imaginary if we have $\sin(mx)$
+
+
+
+
+
+
+\end{document}
+
