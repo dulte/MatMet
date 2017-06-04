@@ -677,10 +677,35 @@ y'' + ay' + b = f(x), \qquad Y(k) = \mathcal{F}[y(x)] = \frac{F(k)}{-k^2 + aik +
 y(x) = \mathcal{F}^{-1}[Y(k)] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{ikx}Y(k) dk
 \end{equation}
 \subsection{Sin and cos-transformations}
-
-
-
-
-
+Even and odd functions are represented by cosine and sine Fourier integrals, respectively. If $f(x)$ is even/odd, so is $F(k)$
+\begin{equation}
+F(k) = \frac{2}{\sqrt{2\pi}}\int^{\infty}_0 f(x) \cos( kx) dx, \qquad f(x) = \frac{1}{\sqrt{2\pi}}\int^{\infty}_0 F(k) \cos(kx) dk
+\end{equation}
+Same for sine
+\subsection{The $\delta$-function:}
+\begin{equation}
+\mathcal{F}[\delta(x)] = \frac{1}{\sqrt{2\pi}},\qquad \delta(x-a) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ik(x-a)}dk
+\end{equation}
+\begin{equation}
+\delta(-x) = \delta(x),\qquad \delta(ax) = \frac{1}{|a|}\delta(x)
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}\delta^{(k)}(x-a)f(x)dx = (-1)^k f^{(k)}(a), \qquad H'(x) = \delta(x)
+\end{equation}
+\subsubsection{$\delta$-sequence:}
+\begin{equation}
+\lim_{n\rightarrow\infty}\int_{-\infty}^{\infty}\phi_n(x-a)f(x)dx = f(a)
+\end{equation}
+Possible:
+\begin{equation}
+\phi_n(x)=
+\begin{cases}
+0 & |x|\geq 1/n\\
+n/2 & |x|< 1/n
+\end{cases}
+\end{equation}
+\begin{equation}
+\phi_n = \frac{n}{\pi}\frac{1}{1+n^2x^2},\qquad \frac{n}{\sqrt{\pi}}e^{-n^2x^2},\qquad \frac{1}{n\pi}\frac{\sin^2 nx}{x^2}
+\end{equation}
 \end{document}
 
