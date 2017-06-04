@@ -355,5 +355,104 @@ x' = \frac{1}{y'}, \qquad dx = x'dy \text{ or } dy = y'dx
 P = \int n ds, \qquad ds = \sqrt{dx^2 + dy^2}
 \end{equation}
 
+\section{ODE:}
+\subsection{Linear First order DE:}
+\begin{equation}
+y' + P(x)y = Q(x)\qquad dy + [Py - Q]dx = 0
+\end{equation}
+\subsubsection{Exact DE's}
+\begin{equation}
+du = \frac{\partial u}{\partial x} dx + \frac{\partial u}{\partial y}dy, \qquad M(x,y)dx + N(x,y)dy = 0
+\end{equation}
+The last DE is called exact if the LHS is a total differential,
+\begin{equation}
+M = \frac{\partial u}{\partial x}; \qquad N = \frac{\partial u}{\partial y}
+\end{equation}
+This gives:
+\begin{equation}
+du = 0 \Leftrightarrow u = \text{ const}
+\end{equation}
+\subsubsection{Integrating factor:}
+\begin{equation}
+y(x) = \frac{1}{\mu(x)}\left[\int \mu(x)Q(x)dx + C\right], \qquad \mu(x) = e^{\int P(x)dx}
+\end{equation}
+If $Q(x) = 0$, the homogeneous case:
+\begin{equation}
+y(x) = \frac{C}{\mu(x)}=Ce^{-\int P(x)dx}
+\end{equation}
+
+\subsection{Ordinary 2nd order DE:}
+\begin{equation}
+y'' + P(x)y' + Q(x)y = R(x), \qquad y(x) = y_h + y_p = c_1y_1 + c_2y_2 + y_p
+\end{equation}
+If $y_1$ and $y_2$ are linearly independent, it must hold that the Wronskian determinant
+\begin{equation}
+W(x_0) = 
+\begin{vmatrix}
+y_1(x_0) & y_2(x_0)\\
+y_1'(x_0) & y_2'(x_0)
+\end{vmatrix}
+= 0 \qquad \forall x_0
+\end{equation}
+\subsection{Homogeneous equations ($R(x) = 0)$}
+\subsubsection{Variations of Constants:}
+if $y_1$ is a solution, an other linearly independent solution can be found as
+\begin{equation}
+y_2(x) = c(x)y_1(x)
+\end{equation}
+Where $c(x)$ can be found from the DE.
+\subsubsection{Homogeneous DE's with constant coefficients}
+\begin{equation}
+y'' + ay' + by = 0, \qquad \lambda^2 + a\lambda + b = 0 \qquad \lambda_{\pm} = \frac{1}{2}[-a\pm\sqrt{a^2-4b}]
+\end{equation}
+\textbf{Case 1:}
+$\lambda_- \neq \lambda_+$, both real $(a^2-4b > 0)$, gives two linearly independent solutions:
+\begin{equation}
+y(x) = C_1e^{\lambda_+ x} + C_2e^{\lambda_- x}
+\end{equation}
+\textbf{Case 2:}
+Double root $\lambda_+ = \lambda_- \equiv \lambda = \frac{-a}{2}$
+\begin{equation}
+y(x) = (Ax + B)e^{\lambda x}
+\end{equation}
+\textbf{Case 3:}
+Complex root $(a^2-4b < 0)$
+\begin{equation}
+\lambda_{\pm} = -\frac{a}{2}\pm i \sqrt{4b - a^2} = -\frac{a}{2}\pm i\omega
+\end{equation}
+\begin{equation}
+y(x) = Ae^{-a/2 + i\omega} + Be^{-a/2 - i\omega} = e^{-ax/2}\left(A\cos(\omega x) + B\sin(\omega x)\right)
+\end{equation}
+\begin{equation}
+=e^{-ax/2}\left(\tilde{A}e^{i\omega x} + \tilde{B}e^{-i\omega x}\right) = ke^{-ax/2}\sin(\omega x + \phi)
+\end{equation}
+\subsubsection{Euler-Cauchy:}
+\begin{equation}
+x^2y'' + a_1xy' + a_0y=0, \text{  or  } y'' +\frac{a_1}{x}y' + \frac{a_0}{x^2}y = 0
+\end{equation}
+Use:
+\begin{equation}
+x = e^z, \qquad z = \ln x, \qquad dx = e^zdz = xdz
+\end{equation}
+For $x > 0$
+\begin{equation}
+x = -|x| =  -e^z, \qquad z = \ln |x|, \qquad dx = -e^zdz = xdz
+\end{equation}
+For $x < 0$. We then get
+\begin{equation}
+\frac{d^2y(z)}{dz^2} + (a_1 - 1)\frac{dy(z)}{dz}+ a_0y(z) = 0
+\end{equation}
+Solve then transform back to $y(x)$. No solution at $x = 0$, and different coefficients for cases $x<0$ and $x>0$!
+
+\subsection{Inhomogeneous DE}
+\begin{equation}
+y(x) = y_h(x) + y_p(x)
+\end{equation}
+\subsubsection{Methods of Undetermined Coefficients:}
+\begin{equation}
+y'' + ay' + by = R(x)
+\end{equation}
+Where $R(x)$ is simple. If $R(x)$ is a sum of simple functions, then $y_p$ is also 
+
 \end{document}
 
