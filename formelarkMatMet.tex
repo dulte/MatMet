@@ -392,7 +392,7 @@ W(x_0) =
 y_1(x_0) & y_2(x_0)\\
 y_1'(x_0) & y_2'(x_0)
 \end{vmatrix}
-= 0 \qquad \forall x_0
+\neq 0 \qquad \forall x_0
 \end{equation}
 \subsection{Homogeneous equations ($R(x) = 0)$}
 \subsubsection{Variations of Constants:}
@@ -452,7 +452,235 @@ y(x) = y_h(x) + y_p(x)
 \begin{equation}
 y'' + ay' + by = R(x)
 \end{equation}
-Where $R(x)$ is simple. If $R(x)$ is a sum of simple functions, then $y_p$ is also 
+Where $R(x)$ is simple. If $R(x)$ is a sum of simple functions, then $y_p$ is also a sum.
+
+\textbf{Case 1:}
+$R(x) = Ae^{kx}$. Assume $\alpha$, $\beta$ are the roots of the characteristic equation of the homogeneous solution.
+
+\textbf{a)}
+If $k \neq \alpha,\beta$. Try $y_p = Be^{kx}$(Find B from the DE)
+
+\textbf{b)}
+$k = \alpha$ or $k = \beta$. Try $y_p = Cxe^{kx}$
+
+\textbf{c)}
+$k=\alpha=\beta$, so $y_h = (Ax + B)e^{kx}$, try: $y_p = Dx^2e^{kx}$
+
+\textbf{Case 2:}
+$R(x) = A\sin kx$ or $ \cos kx$. Has the form $y_p = B\cos kx + C\sin kx$. Efficient: Solve or $\tilde{R}(x) = e^{ikx}$ and take Re or Im at the end.
+
+\textbf{Case 3:}
+$R(x) = e^{kx}P_n(x)$. $P_n$ and $Q_n$ are here polynomials of order $n$.
+
+\textbf{a)}
+If $k \neq \alpha,\beta$. Try $y_p = Q_n(x)e^{kx}$(Find B from the DE)
+
+\textbf{b)}
+$k = \alpha$ or $k = \beta$. Try $y_p = xQ_n(x)e^{kx}$
+
+\textbf{c)}
+$k=\alpha=\beta$, so $y_h = (Ax + B)e^{kx}$, try: $y_p = x^2Q_n(x)e^{kx}$
+
+\subsubsection{More General: $y_p$ from factorization:}
+\begin{equation}
+y'' + P(x)y' + Q(x)y = R(x)
+\end{equation}
+Assume $u(x)$ is a known solution of the homogeneous DE. Make the ansatz $y_p = u(x)v(x)$. $v(x)$ is found from inserting into the DE. If we define $v' = w$ we'll get
+\begin{equation}
+w' + \left(\frac{2u}{u'} + P\right)w = \frac{R}{u}
+\end{equation}
+Solve by integrating factor. And then get 
+\begin{equation}
+v = \int w dx
+\end{equation}
+
+\subsubsection{Variation of Parameters:}
+NB! Write DE on the standard form $y'' + Py' + Q = R$. This works if the homogeneous solutions are fully known!
+\begin{equation}
+y_p(x) = -y_1\int \frac{y_2 R}{W}dx + y_2\int \frac{y_1R}{W} dx
+\end{equation}
+Where $W$ is the Wronskian
+\begin{equation}
+W(x_0) = 
+\begin{vmatrix}
+y_1(x_0) & y_2(x_0)\\
+y_1'(x_0) & y_2'(x_0)
+\end{vmatrix}
+\end{equation}
+\subsection{Fröbenius method:}
+Any DE of the form
+\begin{equation}
+y'' + \frac{B(x)}{x}y' + \frac{C(x)}{x^2}y = 0
+\end{equation}
+Where $B$ and $C$ are analytic in the singular point $x = 0$(if the whole equation is analytic here, we can use power series).
+\begin{equation}
+y(x) = x^s\sum_n a_nx^n
+\end{equation}
+\subsubsection{Indicial equation:}
+Write $x^2y'' + xb(x)y' + c(x)y = 0$, with $b(x) = b_0 + b_1x^1 + ...$, $c(x) = c_0 + c_1x^1 + ...$ and $y(x) = a_0x^s + a_1x^{s+1} + ...$. If we insert these series in to the DE, and equate the coefficients for the lowest possible power $x^s$ we get
+\begin{equation}
+s(s-1) + b_0s_0+c_0 = 0
+\end{equation}
+
+\textbf{a)}
+Two distinct roots $s_1,s_2$ and $s_1 - s_2 \neq $ integer: Two linearly independent solutions.
+\begin{equation}
+y_i = x^{s_i}\sum_na_nx^n
+\end{equation}
+
+\textbf{b)}
+Two distinct roots $s_1,s_2$ but $s_1 - s_2 =$ integer. Choose $s_1 > s_2$
+\begin{itemize}
+\item Often $s_2$ gives a complete solution. Always try the smallest root first.
+\item Sometimes $s_2$ does not give a solution, $s_1$ always does: Find $y_1$, then $y_2 = c(x)y_1$ from variations of constants.
+\item Double root $s_1 = s_2 = s$. Then find $y_1$ from $s$, then $y_2 = c(x)y_1$
+\end{itemize}
+
+\subsubsection{Hermite Eq:}
+From harmonic oscillator: $-\psi'' + x^2\psi = (2n+1)\psi$. Use factorization $\psi(x) = e^{-x^2/2}y(x)$. We then get the Hermite DE:
+\begin{equation}
+y'' - 2xy' +ny = 0
+\end{equation}
+Solution
+\begin{equation}
+a_{k+2} = -\frac{2(n-k)}{(k+1)(k+2)}a_k, \qquad H_n(x) = (-1)^ne^{x^2}\frac{d^2}{dx^2}e^{-x^2}
+\end{equation}
+
+\subsection{Greens functions:}
+\begin{equation}
+Dy(x) = R(x), \qquad D = \frac{d^2}{dx^2} + P(x)\frac{d}{dx} + Q(x)
+\end{equation}
+\begin{equation}
+DG(x,z) = \delta(x-z), \qquad y(a) = y(b) = 0
+\end{equation}
+\begin{equation}
+y(x) = \int_a^bG(x,z)R(x)dz 
+\end{equation}
+$G$ is continuous at $x = z$, but its derivatives has a discontinuity of $1$
+\begin{equation}
+G(z+\epsilon,z) - G(x-\epsilon,z) = 0, \qquad G'(z+\epsilon,z) - G'(x-\epsilon,z) = 1
+\end{equation}
+
+\section{Fourier Series:}
+\subsection{Some orthogonality Relations:}
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\cos(nx)dx = \frac{1}{2\pi}\int_{-\pi}^{\pi}\sin(nx)dx = 0
+\end{equation}
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\cos(mx)\sin(nx)dx = 0
+\end{equation}
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\cos(nx)\cos(mx)dx
+=\begin{cases}
+0 & n\neq m\\
+1/2 & n = m \neq 0\\
+1 & n=m=0
+\end{cases}
+\end{equation}
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\sin(nx)\sin(mx)dx
+=\begin{cases}
+0 & n\neq m\\
+1/2 & n = m \neq 0\\
+0 & n=m=0
+\end{cases}
+\end{equation}
+\begin{equation}
+\int_{-\pi}^{\pi}e^{inx}e^{-imx}dx = 2\pi\delta_{nm}
+\end{equation}
+
+\subsection{Dirichlet Conditions:}
+Sufficient conditions for the Fourier series to converge:
+\begin{itemize}
+\item A finite number of maxima and minima in the basic interval
+\item A finite number of finite discontinuities [bonded]
+\item At point $y_0$ where $f(x)$ has a discontinuity, the Fourier series converges at the midpoint.
+\item The Fourier Series my be integrated term by term
+\item If $f'(x)$ satisfies the Dirichlet conditions, the Fourier series may be differentiated term by term
+\end{itemize}
+
+
+\subsection{Interval $[0,2\pi]$:}
+\begin{equation}
+f(x) = \frac{1}{2}a_0 + \sum_{n=1}^{\infty}a_n\cos(nx) + \sum_{n=1}^{\infty}b_n\sin(nx) 
+\end{equation}
+\begin{equation}
+a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)dx, \qquad b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)dx
+\end{equation}
+
+\subsection{Complex Series:}
+\begin{equation}
+f(x) = \sum_{n = -\infty}^{\infty}c_ne^{inx}, \qquad c_k = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-ik x}dx
+\end{equation}
+Can find a sin-cos series from the complex, and vice versa.
+
+\subsection{Other intervals:}
+We can simply change the interval to another basic interval of length $2L$:
+\begin{equation}
+x\rightarrow \frac{\pi x}{L}, \qquad \frac{1}{\pi}\int_{-\pi}^{\pi} \rightarrow \frac{1}{L}\int_{-L}^{L}
+\end{equation}
+\subsection{Even and Odd Functions:}
+Even: $f(-x) = f(x)$, ex: ($\cos x)$\\
+Odd: $f(-x) = -f(x)$, ex: $(\sin x)$\\
+$even\cdot even = odd\cdot odd = even$, $even\cdot odd = odd$
+
+\begin{equation}
+\int_{-L}^L f(x) dx = 
+\begin{cases}
+0 & \text{f is odd}\\
+2\int_{0}^L f(x) dx & \text{f is even}
+\end{cases}
+\end{equation}
+
+\subsubsection{Fourier of odd Function, sine-series:}
+\begin{equation}
+f(x) = \sum_{n = 1}^{\infty}b_n\sin\left(\frac{n\pi x}{L}\right), \qquad b_n = \frac{2}{L}\int_{-L}^L f(x)\sin\left(\frac{n\pi x}{L}\right) dx
+\end{equation}
+
+\subsubsection{Fourier of even Function, cos-series:}
+\begin{equation}
+f(x) = \frac{a_0}{2} + \sum_{n = 1}^{\infty}a_n\cos\left(\frac{n\pi x}{L}\right), \qquad a_n = \frac{2}{L}\int_{-L}^L f(x)\cos\left(\frac{n\pi x}{L}\right) dx
+\end{equation}\\
+
+A given function may be represented by several different Fourier Series depending on the physics/context. Given a function defined only on half the interval $[0,L]$. We may either define an \textbf{even} extension of $f(x)$ to the period $2L$ by only using the cosine-series; or we may define an \textbf{odd} extension by using the sine-series.
+
+\subsection{Parseval's Theorem:}
+\begin{equation}
+\frac{1}{2L}\int_{-L}^L |f(x)|^2dx = \sum_{-\infty}^{\infty}|c_n|^2 = \left(\frac{1}{2}a_0\right)^2 + \frac{1}{2}\sum_{n=1}^{\infty}a_n^2 + \frac{1}{2}\sum_{n=1}^{\infty}b_n^2
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty}|f(x)|^2 = \int_{-\infty}^{\infty}|F(k)|^2 
+\end{equation}
+
+\section{Fourier Transforms:}
+\begin{equation}
+F(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x) e^{-ikx} dx = \mathcal{F}[f(x)]
+\end{equation}
+\begin{equation}
+f(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} F(k) e^{ikx} dk
+\end{equation}
+\subsection{Fourier Integral Theorem:}
+\begin{equation}
+f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}\underbrace{\int_{-\infty}^{\infty}f(\tilde{x}) e^{-ik\tilde{x}}d\tilde{x}}_{\sqrt{2\pi}F(k)}dk
+\end{equation}
+Is OK if $f(x)$ satisfied the Dirichlet conditions on every finite interval, and $\int_{-\infty}^{\infty}|f(x)|dx$ is finite.
+
+\subsection{Fourier Transforms of Derivatives:}
+\begin{equation}
+\mathcal{F}[f^{(n)}(x)] = (ik)^n\mathcal{F}[f(x)]
+\end{equation}
+\subsubsection{With DE:}
+\begin{equation}
+y'' + ay' + b = f(x), \qquad Y(k) = \mathcal{F}[y(x)] = \frac{F(k)}{-k^2 + aik + b}
+\end{equation}
+\begin{equation}
+y(x) = \mathcal{F}^{-1}[Y(k)] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{ikx}Y(k) dk
+\end{equation}
+\subsection{Sin and cos-transformations}
+
+
+
+
 
 \end{document}
 
