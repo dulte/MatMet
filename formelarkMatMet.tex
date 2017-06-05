@@ -707,5 +707,40 @@ n/2 & |x|< 1/n
 \begin{equation}
 \phi_n = \frac{n}{\pi}\frac{1}{1+n^2x^2},\qquad \frac{n}{\sqrt{\pi}}e^{-n^2x^2},\qquad \frac{1}{n\pi}\frac{\sin^2 nx}{x^2}
 \end{equation}
+
+\section{PDE:}
+\begin{enumerate}
+\item Separation of variables: One ordinary DE per variable
+\item Find solution of these DEs, satisfying the boundary conditions
+\item Use Fourier: Compose solutions from 2) into one that satisfies the initial conditions.
+\end{enumerate}
+\subsection{1D Wave:}
+\begin{equation}
+\frac{\partial^2u}{\partial t^2} = c^2 \frac{\partial^2u}{\partial x^2}, \qquad u(x,t) = F(x)G(t), \qquad F'' - kF = 0,\qquad \ddot{G} -c^2kG = 0
+\end{equation}
+\begin{equation}
+u(0,t) = u(L,t) = 0, \qquad \lambda_n = cp_n = \frac{cn\pi}{L}
+\end{equation}
+\begin{equation}
+U(x,t) = \sum_{n=0}^{\infty}\left[B_n\cos\lambda_n t + \tilde{B}_n\sin\lambda_n t\right]\sin\frac{n\pi x}{L}
+\end{equation}
+\begin{equation}
+u(x,0) = f(x), \qquad \dot{u}(x,0) = g(x)
+\end{equation}
+\begin{equation}
+B_n = \frac{2}{L}\int_0^L f(x)\sin\frac{n\pi x}{L} dx, \qquad \tilde{B_n} = \frac{2}{L\lambda_n}\int_0^L g(x)\sin\frac{n\pi x}{L} dx
+\end{equation}
+\subsection{Heat:}
+\begin{equation}
+\frac{\partial u}{\partial t} = c^2 \frac{\partial^2u}{\partial x^2} \qquad u(x,t) = F(x)G(t), \qquad F'' + p^2F = 0,\qquad \ddot{G} + c^2p^2G = 0,\qquad -k = p^2
+\end{equation}
+\begin{equation}
+u(0,t) = u(L,t) = 0, \qquad u(x,0) = f(x)
+\end{equation}
+\begin{equation}
+U(x,t) = \sum_{n=0}^{\infty} B_n\sin\left(\frac{n\pi x}{L}\right)e^{-\lambda_n^2 t},\qquad B_n = \frac{2}{L}\int_0^L f(x)\sin\frac{n\pi x}{L} dx
+\end{equation}
+
+
 \end{document}
 
